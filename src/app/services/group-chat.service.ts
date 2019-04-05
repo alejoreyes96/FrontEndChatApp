@@ -5,27 +5,23 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Config {
-  gcreation_date: string;
-  gid: number;
-  gname: string;
-  gpicture_id: string;
+  GroupChats: any[]
+
 }
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
   })
-};
+}; 
 @Injectable({
   providedIn: 'root'
 })
 export class GroupChatService {
  
     chatUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'
-    getChats(): Observable<HttpResponse<Config>>{
-      return this.http.get<Config>(this.chatUrl, {observe: 'response'});
+    getChats(){
+      return this.http.get<Config>(this.chatUrl);
     }
-    yes(){
-      console.log('yes');
-    }
+    
   constructor(private http:HttpClient) { }
 }

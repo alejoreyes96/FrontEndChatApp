@@ -8,6 +8,11 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
+  color: floralwhite;
+  border-color: black;
+  height: 100%;
+  width: 25%;
+  flex: left;
 }
 
 .more-button {
@@ -17,5 +22,7 @@
 }
 
 .dashboard-card-content {
+  border-color: black;
   text-align: center;
+  color: white;
 }

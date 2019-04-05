@@ -5,16 +5,19 @@
       <mat-card class="dashboard-card">
         <mat-card-header>
           <mat-card-title>
-            {{card.title}}
-            <button mat-button (click)='showChats()'>ShowChats</button>
-              <li *ngIf ="bool">
-       
-              </li> 
           <ng-template #noData>No Data Available</ng-template>
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div>Card Content Here</div>
+          <div> 
+            <ul *ngIf ="bool">
+             
+                Chat #{{this.config.GroupChats[0].gid}}:
+                  {{this.config.GroupChats[0].gname}}
+
+              
+
+            </ul> </div>
         </mat-card-content>
       </mat-card>
     </mat-grid-tile>
