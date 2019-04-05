@@ -1,3 +1,47 @@
-<p>
-  log-in works!
-</p>
+<div className="FormCenter">
+  <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+
+    <div className="FormField">
+      <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
+      <input type="text" id="email" className="FormField__Input" placeholder="Enter your
+      email" name="email" value={this.state.email} onChange={this.handleChange}/>
+    </div>
+
+    <div className="FormField">
+      <label className="FormField__Label" htmlFor="password">Password</label>
+      <input type="password" id="password" className="FormField__Input" placeholder="Enter your
+      password" name="password" value={this.state.password} onChange={this.handleChange}/>
+    </div>
+
+    <div className="FormField">
+      <button className="FormField__Button mr-20">Sign In</button> <Link to="/"
+      className="FormField__Link">Create an account</Link>
+    </div>
+  </fs>
+  <Router>
+    <div className="App">
+      <div className="App__Aside"></div>
+      <div className="App__Form">
+        <div className="PageSwitcher">
+          <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active"
+          className="PageSwitcher__Item">Sign In</NavLink>
+          <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active"
+          className="PageSwitcher__Item">Sign Up</NavLink>
+        </div>
+
+        <div className="FormTitle">
+          <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active"
+          className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/"
+          activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
+        </div>
+
+        <Route exact path="/" component={SignUpForm}>
+        
+        </Route>
+        <Route path="/sign-in" component={SignInForm}>
+          
+        </Route>
+
+      </div>
+    </div>
+    </Router>
