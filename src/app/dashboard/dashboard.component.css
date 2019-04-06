@@ -8,21 +8,14 @@
   left: 15px;
   right: 15px;
   bottom: 15px;
-  color: floralwhite;
-  border-color: black;
   height: 100%;
   width: 25%;
   flex: left;
+  border-color: black;
 }
 
-.more-button {
-  position: absolute;
-  top: 5px;
-  right: 10px;
-}
 
 .dashboard-card-content {
   border-color: black;
   text-align: center;
-  color: white;
 }

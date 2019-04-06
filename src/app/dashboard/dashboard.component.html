@@ -9,14 +9,16 @@
           </mat-card-title>
         </mat-card-header>
         <mat-card-content class="dashboard-card-content">
-          <div> 
-            <ul *ngIf ="bool">
-             
-                Chat #{{this.config.GroupChats[0].gid}}:
-                  {{this.config.GroupChats[0].gname}}
-
-              
-
+          <div *ngIf ="bool"> 
+            <ul>
+              <nav *ngFor="let chat of this.config.GroupChats">
+                  <a routerLink="/group-chat" routerLinkActive="active">
+                    Chat #{{chat.gid}}:
+                    {{chat.gname}}
+                  </a>
+              </nav>
+                
+            
             </ul> </div>
         </mat-card-content>
       </mat-card>
