@@ -5,21 +5,17 @@ import { HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface Config {
-  Messages: any[]
+  Users: any[]
 
 }
-
-
 @Injectable({
   providedIn: 'root'
 })
-export class MessagesService {
-  chatUrl: string;
-  getMessages(uid, gid){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+uid+'/groupChats/'+gid+'/messages';
+
+export class UsersService {
+  chatUrl = 'http://127.0.0.1:5000/FFMA/users'
+  getUsers(){
     return this.http.get<Config>(this.chatUrl);
   }
-  
-
   constructor(private http:HttpClient) { }
 }
