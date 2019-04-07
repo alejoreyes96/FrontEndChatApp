@@ -11,11 +11,12 @@ import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { GroupChatComponent } from './group-chat/group-chat.component';
 import { ProfileComponent } from './profile/profile.component';
-import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule } from '@angular/material';
+import { MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, MatSidenavModule } from '@angular/material';
 import { LayoutModule } from '@angular/cdk/layout';
 import {HttpClientModule} from '@angular/common/http';
+import { UsersService } from './services/users.service';
 import { GroupChatService } from './services/group-chat.service';
-
+import { MessagesService } from './services/messages.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,10 +29,19 @@ import { GroupChatService } from './services/group-chat.service';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    NbChatModule, BrowserAnimationsModule, NbThemeModule.forRoot({ name: 'cosmic' }), NbLayoutModule, MatGridListModule, MatCardModule, MatMenuModule, MatIconModule, MatButtonModule, LayoutModule,
-    HttpClientModule
+    NbChatModule, BrowserAnimationsModule, NbThemeModule.forRoot({ name: 'cosmic' }), 
+    NbLayoutModule, 
+    MatGridListModule, 
+    MatCardModule, 
+    MatMenuModule, 
+    MatIconModule, 
+    MatButtonModule, 
+    LayoutModule,
+    MatSidenavModule,
+    HttpClientModule,
+
   ],
-  providers: [GroupChatService],
+  providers: [UsersService, GroupChatService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
