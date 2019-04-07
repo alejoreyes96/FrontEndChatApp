@@ -13,10 +13,11 @@
     </div>
     <div class="form-group">
       <div>
-      <button (click)="this.checkValid(username, password)" [disabled]="loading" class="btn btn-primary">Login</button>
-        <div *ngIf="this.validUsername && this.validPassword">
-          <div routerLink="/dashboard"></div>
-        </div>
+      <button [disabled]="loading" routerLink="/dashboard" class="btn btn-primary">Login</button>
+      <!-- (click)="this.checkValid(username, password)" -->
+        <!-- <div *ngIf="this.validUsername && this.validPassword"> -->
+          <!-- <div routerLink="/dashboard"></div> -->
+        <!-- </div> -->
       </div>
       <!-- <button *ngIf="this.validUsername"[disabled]="loading" routerLink="/dashboard" class="btn btn-primary">Login</button> -->
         <!-- <div *ngIf="!this.validUsername">Username is required</div> -->
