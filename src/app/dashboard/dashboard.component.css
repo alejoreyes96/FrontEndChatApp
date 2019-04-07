@@ -1,3 +1,5 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 .grid-container {
   margin: 20px;
 }
@@ -14,7 +16,12 @@
   border-color: black;
 }
 
-
+.example-container {
+  width: 100%;
+  height: 750px;
+  margin: 10px;
+  border: 1px solid #555;
+}
 .dashboard-card-content {
   border-color: black;
   text-align: center;

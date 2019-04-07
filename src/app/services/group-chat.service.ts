@@ -11,7 +11,7 @@ export interface GroupChatsConfig {
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
-  })
+  }) 
 }; 
 @Injectable({
   providedIn: 'root',
@@ -29,6 +29,11 @@ export class GroupChatService {
     createChatUrl(data){
       this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+data+'/groupChats/';
 
+    }
+    getAllChats(){
+      this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/';
+      return this.http.get<GroupChatsConfig>(this.chatUrl);
+   
     }
     
 }
