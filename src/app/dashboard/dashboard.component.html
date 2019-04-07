@@ -16,19 +16,40 @@
     </mat-grid-tile>
   </mat-grid-list>
 </div> -->   
-
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <mat-drawer-container class="example-container">
-    <mat-drawer mode="side" opened>
+    <mat-drawer class="drawer" mode="side" opened>
+      <div>
+        <mat-card class="headerCard">
+          List of GroupChats
+        </mat-card>
+      </div>
       <div > 
-        <ul>
-          <nav *ngFor="let chat of this.config.GroupChats">
+        <mat-card *ngFor="let chat of this.config.GroupChats" class="card">
+            {{chat.gname}}
+          <nav >
+            
               <a (click)="getGid(chat.gid)" routerLink="/group-chat" routerLinkActive="active">
-                Chat #{{chat.gid}}:
-                {{chat.gname}}
-              </a>
+                <button mat-raised-button class="button">
+                    <mat-icon >exit_to_app</mat-icon>
+                </button>
+              </a> 
           </nav>
-        </ul> 
+        </mat-card> 
       </div>
       </mat-drawer>
-    <mat-drawer-content>Main content</mat-drawer-content>
+    <mat-drawer-content class="mainDrawer">
+      <mat-card class="mainCard">
+        Dashboard Card 1
+      </mat-card>
+      &nbsp;
+      <mat-card class="mainCard">
+        Dashboard card 2
+        </mat-card>
+        &nbsp;
+        <mat-card class="mainCard">
+        dashboard card 3
+          </mat-card>
+
+    </mat-drawer-content>
   </mat-drawer-container>

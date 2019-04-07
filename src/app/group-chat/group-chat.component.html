@@ -3,8 +3,7 @@
   <head>    
   </head>
   <body>
-     
-    <nb-chat title="{{this.config.GroupChats[0].gname}}" size="large" >
+    <nb-chat title="{{this.config.GroupChats[gid].gname}}" size="large" >
         
       <nb-chat-message *ngFor="let msg of messages"
                       [type]="msg.type"
