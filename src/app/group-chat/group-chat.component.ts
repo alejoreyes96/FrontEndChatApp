@@ -104,18 +104,22 @@ export class GroupChatComponent implements OnInit {
 
        for(var j=0;j<this.userConfig.Users.length;j++){
  
-        this.messageService.getMessages(this.userConfig.Users[j].uid, this.config.GroupChats[this.gid].gid)
+        this.messageService.getMessages(this.userConfig.Users[0].uid, this.config.GroupChats[this.gid].gid)
         .subscribe((data: MessageConfig) => this.messageConfig = {
   
           Messages: data['Messages']
         });
+      }
         await this.delay(50);
 
         for(var i=0;i<this.messageConfig.Messages.length;i++){
+          for(var k=0;k<this.userConfig.Users.length;k++){
+
          
-          if(this.messageConfig.Messages[i].uid == this.userConfig.Users[j].uid){
-            this.loadMessage(this.messageConfig.Messages[i],this.userConfig.Users[j]);
-        }
+          if(this.messageConfig.Messages[i].uid == this.userConfig.Users[k].uid){
+            this.loadMessage(this.messageConfig.Messages[i],this.userConfig.Users[k]);
+        
+      }
         
         }
        } 
