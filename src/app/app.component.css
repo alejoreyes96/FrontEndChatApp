@@ -1,4 +1,4 @@
-.header { 
+#header { 
     color: #ffffff;
      font-family: 'Droid serif', serif; 
      font-size: 36px; 
@@ -7,5 +7,30 @@
      line-height: 44px; 
      margin: 0 0 12px; 
      text-align: center; 
+     position: relative;
+     width: 100%;
     }
+.menu{
+    background-image: linear-gradient( rgb(155, 145, 158), rgb(104, 96, 107));
+}
+.items{
+background-color: rgb(202, 190, 206);
+}
+.items:hover{
+    background-color: rgb(115, 109, 117);
+
+}
+.menu:hover{
+    background-image: linear-gradient( rgb(124, 116, 126), rgb(83, 76, 85));
+}
+#header:after{
+    position: absolute;
+    height: 200%;
+    width: 1px;
+    background: #f00;
+}
+#header > .menuDiv {
+    float: right;
+
+}
 
