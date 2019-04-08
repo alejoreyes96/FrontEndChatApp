@@ -13,9 +13,16 @@ export interface Config {
 })
 
 export class UsersService {
-  chatUrl = 'http://127.0.0.1:5000/FFMA/users'
+  chatUrl: string;
   getUsers(){
+    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users'
+
     return this.http.get<Config>(this.chatUrl);
+  }
+  getUsersInChat(data){
+    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'+data+'/users';
+    return this.http.get<Config>(this.chatUrl);
+    
   }
   constructor(private http:HttpClient) { }
 }
