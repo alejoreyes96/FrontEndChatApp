@@ -36,8 +36,9 @@
   line-height: 44px; 
   margin: 0 0 12px; 
 }
-.button:hover{
-  background-image: linear-gradient( rgb(97, 91, 99), rgb(72, 66, 75));
+.card:hover{
+  background-image: linear-gradient( rgb(75, 54, 131), rgb(53, 47, 110));
+  cursor: pointer;
 }
 .mainDrawer{
   /* background-image: linear-gradient(rgb(86, 78, 117), rgb(81, 51, 122)); */

@@ -25,16 +25,10 @@
         </mat-card>
       </div>
       <div > 
-        <mat-card *ngFor="let chat of this.config.GroupChats" class="card">
-            {{chat.gname}}
-          <nav >
+        <mat-card (click)="getGid(chat.gid)" *ngFor="let chat of this.config.GroupChats" routerLink="/group-chat" routerLinkActive="active" class="card">
             
-              <a (click)="getGid(chat.gid)" routerLink="/group-chat" routerLinkActive="active">
-                <button mat-raised-button class="button">
-                    <mat-icon >exit_to_app</mat-icon>
-                </button>
-              </a>  
-          </nav>
+          {{chat.gname}}
+         
         </mat-card> 
       </div> 
       </mat-drawer>
