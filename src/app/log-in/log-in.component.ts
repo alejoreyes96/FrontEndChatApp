@@ -6,7 +6,11 @@ import { first } from 'rxjs/operators';
 
 // import { AlertService, AuthenticationService } from '../_services';
 
-@Component({templateUrl: 'log-in.component.html'})
+@Component({
+    selector: 'app-log-in',
+  styleUrls: ['./log-in.component.css'],
+    templateUrl: 'log-in.component.html'
+})
 export class LogInComponent implements OnInit {
     @ViewChild('username', {read: ElementRef}) username: ElementRef<HTMLElement>;
     @ViewChild('password', {read: ElementRef}) password: ElementRef<HTMLElement>;

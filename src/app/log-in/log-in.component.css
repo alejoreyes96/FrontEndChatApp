@@ -1,4 +1,70 @@
+@import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
+
 @import url('https://fonts.googleapis.com/css?Family=Roboto:300,400,500,700');
+@import "../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
+
+.mainCard{
+  width:48%;
+  height: 100%;
+  color: white;
+  text-align: left;
+  background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+  font-family: 'Droid serif', serif; 
+  
+}
+#container {
+  width: 100%;
+  height: 100%;
+  flex: right;
+}
+#container:after{
+  position: absolute;
+
+}
+#container > .mainCard {
+  float: right;
+
+}
+.pic {
+  width:48%;
+  height: 100%;
+  background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+
+}
+#container > .pic {
+  float: left;
+
+}
+.btn {
+  color: black;
+    background-image: linear-gradient( rgb(222, 212, 224), rgb(208, 200, 211));
+}
+  
+.btn:hover{
+  background-image: linear-gradient( rgb(146, 138, 148), rgb(128, 122, 129));
+}
+
+#card {
+  color: white;
+  }
+  #card:after{
+    position: absolute;
+  
+  }
+  #card > .form-control {
+    float: right;
+  
+  }
+  .form-control{
+      color: black;
+  }
+  .image{
+    width: 100%;
+    height: 100%;
+  }
+
+
+
 .App {
     height: 100vh;
     display: flex;
@@ -141,4 +207,3 @@
     padding-bottom: 2px;
     margin-left: 5px;
   }
-@import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');

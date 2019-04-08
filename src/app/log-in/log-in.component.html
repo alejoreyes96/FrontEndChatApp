@@ -1,78 +1,38 @@
-<h2>Login</h2>
-<!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()"> -->
-    <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" #username class="form-control"/>
-    </div>
-    <div class="form-group">
-        <label for="password">Password</label>
-        <input #password type="password" class="form-control" />
-        <!-- <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-            <div *ngIf="f.password.errors.required">Password is required</div>
-        </div> -->
-    </div>
-    <div class="form-group">
-      <div>
-      <button [disabled]="loading" routerLink="/dashboard" class="btn btn-primary">Login</button>
-      <!-- (click)="this.checkValid(username, password)" -->
-        <!-- <div *ngIf="this.validUsername && this.validPassword"> -->
-          <!-- <div routerLink="/dashboard"></div> -->
-        <!-- </div> -->
-      </div>
-      <!-- <button *ngIf="this.validUsername"[disabled]="loading" routerLink="/dashboard" class="btn btn-primary">Login</button> -->
-        <!-- <div *ngIf="!this.validUsername">Username is required</div> -->
-        <img *ngIf="loading" class="pl-3" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-        <button routerLink="/register" class="btn btn-link">Register</button>
-    </div>
-<!-- </form> -->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-<!-- <div className="FormCenter">
-  <form onSubmit={this.handleSubmit} className="FormFields" onSubmit={this.handleSubmit}>
+<div id="container">
+        <mat-card class="mainCard">
 
-    <div className="FormField">
-      <label className="FormField__Label" htmlFor="email">E-Mail Address</label>
-      <input type="text" id="email" className="FormField__Input" placeholder="Enter your
-      email" name="email" value={{this.state.email}} onChange={this.handleChange}/>
-    </div>
-
-    <div className="FormField">
-      <label className="FormField__Label" htmlFor="password">Password</label>
-      <input type="password" id="password" className="FormField__Input" placeholder="Enter your
-      password" name="password" value={{this.state.password}} onChange={this.handleChange}/>
-    </div>
-
-    <div className="FormField">
-      <nav>
-        <a routerLink = "/dashboard" routerLinkActive = "active">
-          <button className="FormField__Button mr-20">Sign In</button>
-        </a>
-      </nav>
-    </div> -->
-
-  <!-- <Router>
-    <div className="App">
-      <div className="App__Aside"></div>
-      <div className="App__Form">
-        <div className="PageSwitcher">
-          <NavLink to="/sign-in" activeClassName="PageSwitcher__Item--Active"
-          className="PageSwitcher__Item">Sign In</NavLink>
-          <NavLink exact to="/" activeClassName="PageSwitcher__Item--Active"
-          className="PageSwitcher__Item">Sign Up</NavLink>
-        </div>
-
-        <div className="FormTitle">
-          <NavLink to="/sign-in" activeClassName="FormTitle__Link--Active"
-          className="FormTitle__Link">Sign In</NavLink> or <NavLink exact to="/"
-          activeClassName="FormTitle__Link--Active" className="FormTitle__Link">Sign Up</NavLink>
-        </div>
-
-        <Route exact path="/" component={SignUpForm}>
+            <h2>Login</h2>
+            <div id="card" class="form-group">
+                <label for="username">Username </label>
+                &nbsp;
+                <input type="text" #username class="form-control"/>
+            </div>
+            &nbsp;
+            <div id="card"class="form-group">
+                <label for="password">Password </label>
+                &nbsp;
+                <input #password type="password" class="form-control" />
         
-        </Route>
-        <Route path="/sign-in" component={SignInForm}>
-          
-        </Route>
+            </div>
+            &nbsp;
+            &nbsp;
+            <div>
 
+              </div>
+              &nbsp;
+              &nbsp;
+            <div class="form-group">
+              <div>
+              <button mat-button [disabled]="loading" routerLink="/dashboard" class="btn">Login</button>
+              &nbsp;
+            
+                <button mat-button routerLink="/register" class="btn">Register</button>
+              </div> 
+             </div>
+        
+        </mat-card>
+        <mat-card class="pic">
+        </mat-card>
       </div>
-    </div>
-    </Router> -->
