@@ -2,13 +2,13 @@
   <nb-layout-header fixed>
     <div id="header">
       FFMA - Fast Friends Media App!
-      <div class="menuDiv" >
-          <button mat-button class="menu" [matMenuTriggerFor]="menu">
-            <mat-icon>list</mat-icon>
-          </button>
-          </div>
+      <div class="menuDiv">
+        <button mat-button class="menu" [matMenuTriggerFor]="menu">
+          <mat-icon>list</mat-icon>
+        </button>
+      </div>
     </div>
-   
+
     <mat-menu #menu="matMenu">
       <button mat-menu-item class="items" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
       <button mat-menu-item class="items" routerLink="/group-chat" routerLinkActive="active">GroupChats</button>
@@ -16,16 +16,16 @@
 
     </mat-menu>
 
-    </nb-layout-header>
+  </nb-layout-header>
 
   <nb-layout-column>
     <router-outlet></router-outlet>
 
-    
+
   </nb-layout-column>
 
   <nb-layout-footer fixed>
-  <!-- Insert footer here -->
+    <!-- Insert footer here -->
   </nb-layout-footer>
 
 </nb-layout>

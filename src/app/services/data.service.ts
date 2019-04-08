@@ -11,6 +11,7 @@ export class DataService {
 
   changeGid(message: number) {
     this.messageSource.next(message)
+
   }
 
 }

@@ -6,6 +6,7 @@ import { GroupChatService } from '../services/group-chat.service';
 import { UsersService } from '../services/users.service';
 import { MessagesService } from '../services/messages.service';
 import { DataService } from '../services/data.service';
+import { StatisticsService } from '../services/statistics.service';
 
 export interface Config {
   GroupChats: any[]
@@ -18,12 +19,15 @@ export interface MessageConfig {
 export interface UserConfig {
   Users: any[]
 }
+export interface HashConfig {
+  Stats: any[]
+}
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  providers: [GroupChatService, UsersService, MessagesService]
+  providers: [GroupChatService, UsersService, MessagesService, StatisticsService]
 })
 
 
@@ -38,32 +42,16 @@ export class DashboardComponent implements OnInit {
   userConfig: UserConfig  = {
     Users: ["No Users to be Shown"]
   }
+  hashConfig: HashConfig  = {
+    Stats: ["No Hashtags to be Shown"]
+  }
   test: any;
-  bool: boolean = false;
-  cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
-    map(({ matches }) => {
-      if (matches) {
-        return [
-          { title: 'Card 1', cols: 1, rows: 1 },
-         
-        ];
-      }
-
-      return [
-        { title: 'Card 1', cols: 2, rows: 1 },
-
-      ];
-    })
-  );
+  
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
   showChats(){
-   this.bool = true;
-    // this.service.getChats()
-    // .subscribe(resp => {
-    //   this.config = {...resp.body};
-    // });
+  
     (async () => { 
       // Do something before delay
       
@@ -83,13 +71,29 @@ export class DashboardComponent implements OnInit {
   })();
     
   }
+
+  getHashStats(){
+    (async () => { 
+
+    this.stats.getHashStats()
+    .subscribe((data: HashConfig) => this.hashConfig = {
+      Stats: data['Stats']
+      
+    });
+    await this.delay(50);
+  })();
+
+  }
+  
   getGid(gid){
     this.data.changeGid(gid-1);
+    console.log(gid)
   }
-  constructor(private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
+  constructor(private stats: StatisticsService, private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
   }
 
   ngOnInit() {
+    this.getHashStats();
     this.showChats();
     this.data.currentMessage.subscribe(message => this.gid = message)
 

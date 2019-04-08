@@ -5,4 +5,30 @@
     font-style: italic; 
 
  }
+ .mainCard{
+   width:20%;
+   height: 100%;
+   color: white;
+   background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+   font-family: 'Droid serif', serif; 
+   font-size: 20px; 
+   font-style: italic; 
+
+ }
+ #container {
+  
+   flex: right;
+ }
+ #container:after{
+   position: absolute;
+ 
+ }
+ #container > .mainCard {
+   float: right;
+ 
+ }
+ #container > .title {
+   float: left;
+ 
+ }
  

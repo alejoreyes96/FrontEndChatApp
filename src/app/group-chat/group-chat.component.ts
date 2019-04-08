@@ -15,7 +15,10 @@ export interface MessageConfig {
 export interface UserConfig {
   Users: any[]
 }
+export interface OwnerConfig {
+  Owner: any
 
+}
 
 @Component({
   selector: 'app-group-chat',
@@ -27,6 +30,9 @@ export class GroupChatComponent implements OnInit {
 
   constructor(private data: DataService, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
   gid: number=0;
+  ownerConfig: OwnerConfig = {
+    Owner: 'No owner found'
+  }
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
   }
@@ -48,9 +54,8 @@ export class GroupChatComponent implements OnInit {
     this.getUsers();
     this.getGroupChats();
     this.data.currentMessage.subscribe(message => this.gid = message)
-
+    this.getOwner();
     this.getMessages();
-
 
   } 
   
@@ -91,6 +96,18 @@ export class GroupChatComponent implements OnInit {
         });
       
  
+  }
+  getOwner(){
+    (async () => { 
+      // Do something before delay
+    this.service.getOwner(this.gid)
+    .subscribe((data: OwnerConfig) => this.ownerConfig = {
+
+      Owner: data['Owner']
+    });
+    await this.delay(100);
+
+  })
   }
   getMessages(){
      // this.service.getChats()

@@ -15,35 +15,39 @@
     
     </mat-grid-tile>
   </mat-grid-list>
-</div> -->   
+</div> -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <mat-drawer-container class="example-container">
-    <mat-drawer class="drawer" mode="side" opened>
-      <div>
-        <mat-card class="headerCard">
-          List of GroupChats
-        </mat-card>
-      </div>
-      <div > 
-        <mat-card (click)="getGid(chat.gid)" *ngFor="let chat of this.config.GroupChats" routerLink="/group-chat" routerLinkActive="active" class="card">
-            
-          {{chat.gname}}
-         
-        </mat-card> 
-      </div> 
-      </mat-drawer>
-    <mat-drawer-content class="mainDrawer">
-      <mat-card class="mainCard">
-        Dashboard Card 1
+  <mat-drawer class="drawer" mode="side" opened>
+    <div>
+      <mat-card class="headerCard">
+        List of GroupChats
       </mat-card>
-      &nbsp;
-      <mat-card class="mainCard">
-        Dashboard card 2
-        </mat-card>
-        &nbsp;
-        <mat-card class="mainCard">
-        dashboard card 3
-          </mat-card>
+    </div>
+    <div>
+      <mat-card (click)="getGid(chat.gid)" *ngFor="let chat of this.config.GroupChats" routerLink="/group-chat"
+        routerLinkActive="active" class="card">
 
-    </mat-drawer-content>
-  </mat-drawer-container>
+        {{chat.gname}}
+
+      </mat-card>
+    </div>
+  </mat-drawer>
+  <mat-drawer-content class="mainDrawer">
+    <mat-card class="mainCard">
+      Trending Topics:
+      <div class='card1' *ngFor="let hash of this.hashConfig.Stats">
+        #{{hash.Hashtag}} &nbsp; &nbsp; 
+      </div>
+    </mat-card>
+    &nbsp;
+    <mat-card class="mainCard">
+      Dashboard card 2
+    </mat-card>
+    &nbsp;
+    <mat-card class="mainCard">
+      dashboard card 3
+    </mat-card>
+
+  </mat-drawer-content>
+</mat-drawer-container>

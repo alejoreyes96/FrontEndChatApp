@@ -7,6 +7,10 @@ export interface GroupChatsConfig {
   GroupChats: any[]
 
 }
+export interface OwnerConfig {
+  Owner: any
+
+}
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -34,6 +38,11 @@ export class GroupChatService {
       this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/';
       return this.http.get<GroupChatsConfig>(this.chatUrl);
    
+    }
+    getOwner(data){
+      this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
+      return this.http.get<OwnerConfig>(this.chatUrl);
+
     }
     
 }

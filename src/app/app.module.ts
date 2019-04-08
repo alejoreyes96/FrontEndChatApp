@@ -18,6 +18,7 @@ import { UsersService } from './services/users.service';
 import { GroupChatService } from './services/group-chat.service';
 import { MessagesService } from './services/messages.service';
 import { DataService } from './services/data.service';
+import { StatisticsService } from './services/statistics.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +43,7 @@ import { DataService } from './services/data.service';
     HttpClientModule,
 
   ],
-  providers: [DataService, UsersService, GroupChatService, MessagesService],
+  providers: [DataService, UsersService, GroupChatService, MessagesService, StatisticsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
