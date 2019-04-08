@@ -11,7 +11,7 @@
      width: 100%;
     }
 .menu{
-    background-image: linear-gradient( rgb(155, 145, 158), rgb(104, 96, 107));
+    background-image: linear-gradient( rgb(222, 212, 224), rgb(208, 200, 211));
 }
 .items{
 background-color: rgb(202, 190, 206);
@@ -21,7 +21,7 @@ background-color: rgb(202, 190, 206);
 
 }
 .menu:hover{
-    background-image: linear-gradient( rgb(124, 116, 126), rgb(83, 76, 85));
+    background-image: linear-gradient( rgb(146, 138, 148), rgb(128, 122, 129));
 }
 #header:after{
     position: absolute;
