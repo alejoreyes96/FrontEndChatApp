@@ -1,0 +1,92 @@
+{
+  "_args": [
+    [
+      "@nebular/eva-icons@4.0.0-beta.0",
+      "/home/alejoreyes96/Desktop/chatApp"
+    ]
+  ],
+  "_from": "@nebular/eva-icons@4.0.0-beta.0",
+  "_hasShrinkwrap": false,
+  "_id": "@nebular/eva-icons@4.0.0-beta.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/@nebular/eva-icons",
+  "_nodeVersion": "8.11.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/eva-icons_4.0.0-beta.0_1554126078824_0.2375920570730865"
+  },
+  "_npmUser": {
+    "email": "contact@akveo.com",
+    "name": "nebular"
+  },
+  "_npmVersion": "6.1.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "@nebular/eva-icons",
+    "raw": "@nebular/eva-icons@4.0.0-beta.0",
+    "rawSpec": "4.0.0-beta.0",
+    "scope": "@nebular",
+    "spec": "4.0.0-beta.0",
+    "type": "version"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@nebular/eva-icons/-/eva-icons-4.0.0-beta.0.tgz",
+  "_shasum": "3fb6beba3de11ce2659d87a4db2201271bf88458",
+  "_shrinkwrap": null,
+  "_spec": "@nebular/eva-icons@4.0.0-beta.0",
+  "_where": "/home/alejoreyes96/Desktop/chatApp",
+  "author": {
+    "name": "akveo"
+  },
+  "bugs": {
+    "url": "https://github.com/akveo/nebular/issues"
+  },
+  "dependencies": {},
+  "description": "@nebular/eva-icons",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "fileCount": 11,
+    "integrity": "sha512-lGNfT5jN1+P+z0zpuph5OE+PlSoxaBDChiMM+/fQqYTO+zQ6PSI52zAEIi2X1GbZRdyC1KEaGIk9/RdBRThBUQ==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcohT/CRA9TVsSAnZWagAAOT0P/0Kc9d/Qfdu4VQ+gUuCp\nIvFA1RiVC9jRJYTr/r/sBYXorzmfd3MOfQI00VTeEJ6/DDPLl/HIflmHoiXX\nt2yYLeGnsZIlfMEL+FoZU3giZToPjI3lTVSHzdyflNNdJyjsP4nbV5qemQIg\nNzK7An2UG1ILW6dPsayCIuUWyvP0mnGLGa6BcoW5RV4V/44c626uCUDvS2Rs\ngbHrwGIBBObK45jLum8ZE0OroUuvdkVONz44t+fkyIqQxr9TGTrJoIP6dFFl\njeHBIbODxXhmOpnUiv+Cjoim/sqyjekp6MYdh1kSlCEbz9Kk0Qy2Hs34h7H5\n9Gj0dj8nakdMNLaaLPs5VYVwwgForYk4K9jJUqIer6fYwfepa6YvrtXbH4w7\nBwGNixJXejfekK6X+1kls6AO3Bc07dW5Z+B3bUicCXFq5nwOQy/5dSowPHqd\nOsnTr7ttbXXIHyZXFZTbdT6XjdKoNFGpn9J6lMLm+e8KgYYxLol8pao6PO7z\nf+n+hrdC1qA6McLS8HCsxsf+R6Xg/1gU5uoqzrA6IgOfcQdnEkysmVldY9CW\nwE1+jrN6lPYzIHo4AZl+8SixA0MZN6JWKmNs+7YTTURHPeZh5C/jvz5FdRHf\n+DcjpPVZgNMYF4tNq/+exzu9Wz3NkIhnXkHGYYU6tVIAReLpYaTegOLRMV3k\neQwL\r\n=P0FD\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "3fb6beba3de11ce2659d87a4db2201271bf88458",
+    "tarball": "https://registry.npmjs.org/@nebular/eva-icons/-/eva-icons-4.0.0-beta.0.tgz",
+    "unpackedSize": 9799
+  },
+  "homepage": "https://github.com/akveo/nebular#readme",
+  "keywords": [
+    "angular",
+    "eva-icons",
+    "icons",
+    "nebular",
+    "ng2-admin",
+    "ngx-admin",
+    "theme",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "./bundles/eva-icons.umd.js",
+  "maintainers": [
+    {
+      "name": "nebular",
+      "email": "contact@akveo.com"
+    }
+  ],
+  "module": "./index.js",
+  "name": "@nebular/eva-icons",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@nebular/theme": "4.0.0-beta.0",
+    "eva-icons": "^1.1.1"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akveo/nebular.git"
+  },
+  "typings": "./index.d.ts",
+  "version": "4.0.0-beta.0"
+}
