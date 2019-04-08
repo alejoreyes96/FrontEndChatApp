@@ -1,0 +1,98 @@
+{
+  "_args": [
+    [
+      "@nebular/theme",
+      "/home/alejoreyes96/Desktop/chatApp"
+    ]
+  ],
+  "_from": "@nebular/theme@latest",
+  "_hasShrinkwrap": false,
+  "_id": "@nebular/theme@4.0.0-beta.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/@nebular/theme",
+  "_nodeVersion": "8.11.1",
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/theme_4.0.0-beta.0_1554126101226_0.47879964570579125"
+  },
+  "_npmUser": {
+    "email": "contact@akveo.com",
+    "name": "nebular"
+  },
+  "_npmVersion": "6.1.0",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "@nebular/theme",
+    "raw": "@nebular/theme",
+    "rawSpec": "",
+    "scope": "@nebular",
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/@nebular/theme/-/theme-4.0.0-beta.0.tgz",
+  "_shasum": "8d02436c110ef2109f0acbaa94296971f668d02a",
+  "_shrinkwrap": null,
+  "_spec": "@nebular/theme",
+  "_where": "/home/alejoreyes96/Desktop/chatApp",
+  "author": {
+    "name": "akveo"
+  },
+  "bugs": {
+    "url": "https://github.com/akveo/nebular/issues"
+  },
+  "dependencies": {
+    "intersection-observer": "0.5.0"
+  },
+  "description": "@nebular/theme",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "fileCount": 1242,
+    "integrity": "sha512-7HR0IyamdX2J679tHdbDSzDWVPzIY0gtgXIoV/v2BDa7+g7FuTj5eRaEfp06QkmDpXLQJdW7gppJ8HdoBw9tGw==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcohUWCRA9TVsSAnZWagAAD2IP/jXL6CbtI3opceO0piky\nlolOs3PLZT6z5ZzqdKeX6BlN4UjLx4jRBJcilAukHAjgMgUMVQPyFbPE/VRo\nkSNvreSYvBW4/Qk6/+qgNA20DxAtmSG1Qadc/GY4O6Bs1A6Fo8VS+G6TXxyV\nF8VegJf+98jB2IuF1tXntqnGl73VwVZuxH/9WSaDJ82Diivu7UQrbilSxEDN\nwMfys7UTNqv5Ow/pZGGXRJvGs8jzCGhAPRsbfkGg2MWs0b4MeHmjvEkOWbK0\nfK3dwV71I9cRGPg5hUzxaI0T/E4ZVcmZTVvud5XfjyTIfE/njNdiHu/APHiR\nFIgRUdVW94MeCpuiNszipPpAltPQmjtIeS8/KvuIYjd2bKorAc+dl2lfdQ4Q\nhc9IVPmiBQMxvMZhGBZHSbpjHL99SCX+EFQMdPoodObG8mQ2HnoMc23RVhZm\nmtrbcVoMJfX5VlpEYyHqt/kBoS9/MSHCehxx01IKuA9ZsEM+xpD316bEXAeC\nSt7Y2PJSlwYP75P/3id4IoDSyVuf/2T3+VaavCN2KJJuPqNmz5AnMjPm6VMD\nefz73BsB/uhgR568dqLNsvdXPERTf2Y/DJoqFj5hmr37xFMATc/1HxJEiqec\nDZYcC6TDuQYJlAR7bQgZ6gxxjQqYJZGMvN1p3K+/8636nzvnTOWS/pOdntYo\nHj8b\r\n=OSzt\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "8d02436c110ef2109f0acbaa94296971f668d02a",
+    "tarball": "https://registry.npmjs.org/@nebular/theme/-/theme-4.0.0-beta.0.tgz",
+    "unpackedSize": 4631072
+  },
+  "homepage": "https://github.com/akveo/nebular#readme",
+  "keywords": [
+    "angular",
+    "nebular",
+    "ng2-admin",
+    "ngx-admin",
+    "theme",
+    "typescript"
+  ],
+  "license": "MIT",
+  "main": "./bundles/theme.umd.js",
+  "maintainers": [
+    {
+      "name": "nebular",
+      "email": "contact@akveo.com"
+    }
+  ],
+  "module": "./index.js",
+  "name": "@nebular/theme",
+  "optionalDependencies": {},
+  "peerDependencies": {
+    "@angular/animations": "^7.0.0",
+    "@angular/cdk": "^7.2.1",
+    "@angular/common": "^7.0.0",
+    "@angular/core": "^7.0.0",
+    "@angular/router": "^7.0.0",
+    "rxjs": "^6.3.0"
+  },
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/akveo/nebular.git"
+  },
+  "schematics": "./schematics/collection.json",
+  "typings": "./index.d.ts",
+  "version": "4.0.0-beta.0"
+}
