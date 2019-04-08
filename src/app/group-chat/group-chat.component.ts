@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { GroupChatService } from '../services/group-chat.service';
 import { MessagesService } from '../services/messages.service';
 import { UsersService } from '../services/users.service';
+import { DataService } from '../services/data.service';
 
 export interface Config {
   GroupChats: any[]
@@ -16,15 +17,16 @@ export interface UserConfig {
 }
 
 
-
 @Component({
   selector: 'app-group-chat',
   templateUrl: './group-chat.component.html',
   styleUrls: ['./group-chat.component.css']
 })
+
 export class GroupChatComponent implements OnInit {
 
-  constructor(private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
+  constructor(private data: DataService, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
+  gid: number=0;
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
   }
@@ -39,13 +41,21 @@ export class GroupChatComponent implements OnInit {
     type: '',
     icon: '',
   }]
+ 
+ 
   
   ngOnInit() {
+    this.getUsers();
+    this.getGroupChats();
+    this.data.currentMessage.subscribe(message => this.gid = message)
+
     this.getMessages();
 
-  }
+
+  } 
+  
   messages: any[] = [{
-    text: "This is me",
+    text: "Welcome to the chat !!",
     date: new Date(),
     reply: false,
     type: 'text',
@@ -58,6 +68,30 @@ export class GroupChatComponent implements OnInit {
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
 }
+  getUsers(){
+
+      // Do something before delay
+      
+      
+      this.userService.getUsers()
+        .subscribe((data: UserConfig) => this.userConfig = {
+  
+          Users: data['Users']
+        });
+     
+  
+  }
+  getGroupChats(){
+
+      // Do something before delay
+        this.service.getAllChats()
+        .subscribe((data: Config) => this.config = {
+  
+          GroupChats: data['GroupChats']
+        });
+      
+ 
+  }
   getMessages(){
      // this.service.getChats()
      // .subscribe(resp => {
@@ -65,29 +99,12 @@ export class GroupChatComponent implements OnInit {
      // });
      (async () => { 
        // Do something before delay
-       
-       
-       this.userService.getUsers()
-         .subscribe((data: UserConfig) => this.userConfig = {
-   
-           Users: data['Users']
-         });
-      
        await this.delay(50);
-   
-   
-    
-       
-       for(var j=0;j<this.userConfig.Users.length;j++){
+      this.messages[0].text = "Welcome to the chat " + this.config.GroupChats[this.gid].gname + "!!";
 
-       this.service.getChats(this.userConfig.Users[j].uid)
-       .subscribe((data: Config) => this.config = {
+       for(var j=0;j<this.userConfig.Users.length;j++){
  
-         GroupChats: data['GroupChats']
-       });
- 
-       await this.delay(50);
-        this.messageService.getMessages(this.userConfig.Users[j].uid, this.config.GroupChats[0].gid)
+        this.messageService.getMessages(this.userConfig.Users[j].uid, this.config.GroupChats[this.gid].gid)
         .subscribe((data: MessageConfig) => this.messageConfig = {
   
           Messages: data['Messages']

@@ -1,19 +1,61 @@
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
-
+@import "../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 .grid-container {
   margin: 20px;
 }
+.button{
+  background-image: linear-gradient( rgb(190, 174, 194), rgb(113, 104, 116));
 
-.dashboard-card {
-  position: absolute;
-  top: 15px;
-  left: 15px;
-  right: 15px;
-  bottom: 15px;
-  height: 100%;
-  width: 25%;
-  flex: left;
-  border-color: black;
+ /* background-color: rgb(171, 156, 175); */
+
+}
+.drawer{
+  background-image: linear-gradient( rgb(106, 84, 204), rgb(37, 21, 83));
+
+  /* background-color: rgb(78, 37, 136); */
+}
+
+.headerCard{
+  flex: center;
+  text-align: center;
+  background-image: linear-gradient( rgb(76, 60, 150), rgb(60, 35, 136));
+  color: white;
+  font-family: 'Droid serif', serif; 
+
+
+}
+.mainCard{
+  width:100%;
+  height: 30%;
+  color: white;
+  text-align: center;
+  background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+  font-family: 'Droid serif', serif; 
+  font-size: 36px; 
+  font-weight: 400; 
+  font-style: italic; 
+  line-height: 44px; 
+  margin: 0 0 12px; 
+}
+.button:hover{
+  background-image: linear-gradient( rgb(97, 91, 99), rgb(72, 66, 75));
+}
+.mainDrawer{
+  /* background-image: linear-gradient(rgb(86, 78, 117), rgb(81, 51, 122)); */
+  background-color: rgb(86, 78, 117);
+  padding: 20px;
+  box-shadow: 10px 20px;
+}
+
+.card {
+  height: 75px;
+  border-width: 100px;
+  color: white;
+  text-align: center;
+  background-image: linear-gradient( rgb(98, 70, 177), rgb(82, 73, 163));
+
+  /* background-color: rgb(98, 63, 143); */
+  font-family: 'Droid serif', serif; 
+
 }
 
 .example-container {

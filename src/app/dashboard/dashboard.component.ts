@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import * as _ from 'lodash';
 import { map } from 'rxjs/operators'
 import { GroupChatService } from '../services/group-chat.service';
 import { UsersService } from '../services/users.service';
 import { MessagesService } from '../services/messages.service';
+import { DataService } from '../services/data.service';
 
 export interface Config {
   GroupChats: any[]
@@ -25,7 +26,9 @@ export interface UserConfig {
   providers: [GroupChatService, UsersService, MessagesService]
 })
 
+
 export class DashboardComponent implements OnInit {
+  public gid: number;
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
   }
@@ -80,10 +83,15 @@ export class DashboardComponent implements OnInit {
   })();
     
   }
-  constructor(private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
+  getGid(gid){
+    this.data.changeGid(gid-1);
+  }
+  constructor(private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
   }
 
   ngOnInit() {
-    this.showChats()
+    this.showChats();
+    this.data.currentMessage.subscribe(message => this.gid = message)
+
   }
 }

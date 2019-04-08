@@ -17,6 +17,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { UsersService } from './services/users.service';
 import { GroupChatService } from './services/group-chat.service';
 import { MessagesService } from './services/messages.service';
+import { DataService } from './services/data.service';
 @NgModule({
   declarations: [
     AppComponent,
@@ -41,7 +42,7 @@ import { MessagesService } from './services/messages.service';
     HttpClientModule,
 
   ],
-  providers: [UsersService, GroupChatService, MessagesService],
+  providers: [DataService, UsersService, GroupChatService, MessagesService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
