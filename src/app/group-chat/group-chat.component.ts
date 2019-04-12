@@ -42,10 +42,10 @@ export class GroupChatComponent implements OnInit {
   messageConfig: MessageConfig = {
     Messages: ["No Messages to be Shown"]
   }
-  userConfig: UsersInChatConfig = {
+  userConfig: UserConfig = {
     Users: ["No Users to be Shown"]
   }
-  usersInChatConfig: UserConfig = {
+  usersInChatConfig: UsersInChatConfig = {
     Users: ["No Users to be Shown"]
   }
   file: any[] = [{
