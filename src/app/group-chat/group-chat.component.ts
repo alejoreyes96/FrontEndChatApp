@@ -19,7 +19,7 @@ export interface UsersInChatConfig {
   Users: any[]
 }
 export interface OwnerConfig {
-  Owner: any[]
+  Owner: any[] 
 
 }
 

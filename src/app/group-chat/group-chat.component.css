@@ -8,8 +8,8 @@
  .mainCard{
    width:15%;
    height: 100%;
-   color: white;
-   background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+   color: black; 
+   background-color: white;
    font-family: 'Droid serif', serif; 
    font-size: 20px; 
    font-style: italic; 

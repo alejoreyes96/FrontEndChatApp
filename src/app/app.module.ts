@@ -31,7 +31,7 @@ import { StatisticsService } from './services/statistics.service';
   imports: [
     BrowserModule,
     AppRoutingModule, 
-    NbChatModule, BrowserAnimationsModule, NbThemeModule.forRoot({ name: 'cosmic' }), 
+    NbChatModule, BrowserAnimationsModule, NbThemeModule.forRoot({ name: 'corporate' }), 
     NbLayoutModule, 
     MatGridListModule, 
     MatCardModule, 

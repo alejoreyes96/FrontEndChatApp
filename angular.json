@@ -23,7 +23,7 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css", "@nebular/theme/styles/prebuilt/cosmic.css"
+              "src/styles.css", "@nebular/theme/styles/prebuilt/corporate.css"
             ],
             "scripts": [],
             "es5BrowserSupport": true
