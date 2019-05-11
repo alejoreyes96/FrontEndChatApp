@@ -28,11 +28,11 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## FFMA Chat App
 
-In this project, we will be creating a web-based social media network called Fast Friends Media App which allows any one user to create a group to which he can add friends via email to the group. Once the group has members, these friends can upload pictures, videos, like most social media networks now a days. Any user can give a like or dislike to the message, can reply with yet another picture or video as well. 
+In this project, we have created a web-based for a social media network called Fast Friends Media App which allows any one user to create a group which the user can add friends via email to the  existing group. Once the group has members, these friends can upload pictures, videos, like current social media networks. Any user can give a "like" or "dislike" to the message, also can reply with yet another picture or video as well. 
 
 ## Creators 
 
-Under the guidance of Dr. Manuel Rodriguez, our development group consisted of Crystal Torres, Kahlil Fonseca and Alejandro Reyes. This proyect was made for the class ICOM 5016, May 10th 2019 in accordance to the requirements of said course. 
+Under the guidance of Dr. Manuel Rodriguez, our development group consisted of Crystal Torres, Kahlil Fonseca and Alejandro Reyes. This proyect was made for the class ICOM 5016, May 10th 2019 in accordance to the requirements of the course. 
 
 ## Finally 
 
