@@ -11,31 +11,38 @@
                 <input type="text" #first_name class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="firstNameEmpty(first_name)">First Name is required</div>
+                <div *ngIf="empty(first_name)">First Name is required</div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="last_name">Last Name </label>
+                &nbsp;
+                <input type="text" #last_name class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(last_name)">Last Name is required</div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="birthdate">Birthdate </label>
+                &nbsp;
+                <input type="text" #birthdate class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!validBirthdate(birthdate)">Birthdate is not valid</div>
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(birthdate)">Birthdate is required</div>
             </div>
         </div>
         &nbsp;
         <!-- &nbsp;
-        <div id="card" class="form-group">
-            <label for="lastName">Last Name </label>
-            <input type="text" formControlName="lastName" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-            <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-            </div>
-        </div>
-        &nbsp;
-        &nbsp;
-        <div id="card" class="form-group">
-            <label for="birthDate">Birth Date </label>
-            <input type="text" formControlName="birthDate" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.birthDate.errors }" />
-            <div *ngIf="submitted && f.birthDate.errors" class="invalid-feedback">
-                <div *ngIf="f.birthDate.errors.required">Birth date is required</div>
-            </div>
-        </div>
-        &nbsp;
-        &nbsp;
         <div id="card" class="form-group">
             <label for="phone">Phone Number </label>
             <input type="text" formControlName="phone" class="form-control"
@@ -45,7 +52,7 @@
             </div>
         </div>
         &nbsp; -->
-        &nbsp;
+        <!-- &nbsp;
         <div id="card" class="form-group">
             <label for="username">Username </label>
             &nbsp;
@@ -54,7 +61,7 @@
                 <div *ngIf="!checkUsername(username)">Username not valid or unavailable</div>
             </div>
         </div>
-        &nbsp;
+        &nbsp; -->
         <!-- &nbsp;
         <div id="card" class="form-group">
             <label for="email">E-mail </label>

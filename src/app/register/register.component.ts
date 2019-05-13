@@ -84,13 +84,65 @@ export class RegisterComponent implements OnInit {
       this.getUsers();
     }
 
-    firstNameEmpty(first_name){
+    empty(param){
         let empty = true;
-        if(first_name.value.length > 0)
+        if(param.value.length > 0)
             empty = false;
 
         console.log("Empty: ", empty);
         return empty;
+    }
+
+    validBirthdate(birthdate){
+      let valid = false;
+      let month0 = birthdate.value[0];
+      let month1 = birthdate.value[1];
+      let day0 = birthdate.value[3];
+      let day1 = birthdate.value[4];
+      let year0 = birthdate.value[6];
+      let year1 = birthdate.value[7];
+      let year2 = birthdate.value[8];
+      let year3 = birthdate.value[9];
+      let month = Number(month0)*10 + Number(month1);
+      let day = Number(day0)*10 + Number(day1);
+      let year = Number(year0)*1000 + Number(year1)*100 + Number(year2)*10 + Number(year3);
+      let dayValid = false;
+      let monthValid = false;
+      let yearValid = false;
+      console.log("Month", month, "Day", day, "Year", year);
+      if(birthdate.value.length == 10){
+        if(year >= 0){
+          yearValid = true;
+        }
+        if(month >= 1 && month <= 12){
+          monthValid = true;
+        }
+        if(day >= 1 && day <= 31){
+          dayValid = true;
+        }
+        if(dayValid && monthValid && yearValid){
+          if(month <= 7 && month%2 == 0){
+            if(day <= 30 && month != 2){
+              valid = true;
+            }else if(month == 2 && year %4 == 0){
+              if(day <= 29){
+                valid = true;
+              }
+            }else if(month == 2){
+              if(day <= 28){
+                valid = true;
+              }
+            }
+          }else if(month <= 7){
+            valid = true;
+          }else if(month >= 8 && month%2 == 1){
+            if(day <= 30){
+              valid = true;
+            }
+          }
+        }
+      }
+      return valid;
     }
 
     checkUsername(username){

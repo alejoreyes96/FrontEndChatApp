@@ -27,7 +27,7 @@
       <div>
         <button mat-button [disabled]="loading" (click)="tryLogin(username, password)" class="btn">Login</button>
         &nbsp;
-
+        <div *ngIf="submitted && !found">Incorrect credentials.</div>
         <button mat-button routerLink="/register" class="btn">Register</button>
       </div>
     </div>

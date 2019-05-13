@@ -159,14 +159,14 @@ export class LogInComponent implements OnInit {
     }
 
     tryLogin(username, password){
+      this.submitted = true;
       (async () => {
         await this.delay(500);
-
         let found = false;
         for(let i = 0; i < this.userConfig.Users.length; i++){
             this.getUserInfo(this.userConfig.Users[i].uid);
             await this.delay(200);
-            if(this.userConfig2.Users[i].user_name === username.value && this.userConfig2.Users.hupassword === password.value){
+            if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
                 found = true;
                 break;
             }

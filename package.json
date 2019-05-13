@@ -26,6 +26,7 @@
     "angular-alert-module": "^2.0.3",
     "bootstrap": "^4.3.1",
     "core-js": "^2.5.4",
+    "ng2-google-charts": "^4.0.0",
     "ngx-bootstrap": "^4.0.0",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.4.0",
