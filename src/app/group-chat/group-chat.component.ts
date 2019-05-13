@@ -90,9 +90,10 @@ export class GroupChatComponent implements OnInit {
 
         Users: data['Users']
       });
-      await this.delay(50);
-    })();
+      await this.delay(1000);
+      console.log(this.userConfig)
 
+    })();
   }
   getGroupChats() {
     (async () => {
@@ -138,15 +139,16 @@ export class GroupChatComponent implements OnInit {
       await this.delay(350);
       this.messages[0].text = "Welcome to the chat " + this.config.GroupChats[this.gid].gname + "!!";
 
-      for (var j = 0; j < this.userConfig.Users.length; j++) {
 
         this.messageService.getMessages(this.userConfig.Users[0].uid, this.config.GroupChats[this.gid].gid)
           .subscribe((data: MessageConfig) => this.messageConfig = {
 
             Messages: data['Messages']
           });
-      }
+      
       await this.delay(50);
+      console.log(this.messageConfig)
+
       for (var i = 0; i < this.messageConfig.Messages.length; i++) {
         for (var k = 0; k < this.userConfig.Users.length; k++) {
 
