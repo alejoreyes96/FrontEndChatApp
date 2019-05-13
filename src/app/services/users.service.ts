@@ -12,26 +12,35 @@ export interface OwnerConfig {
   Owner: any[]
 
 }
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type':  'application/json'
+  }) 
+}; 
+
 @Injectable({
   providedIn: 'root'
 })
 
 export class UsersService {
-  chatUrl: string;
+  userUrl: string;
   getUsers(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users'
-
-    return this.http.get<Config>(this.chatUrl);
+    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/'
+    return this.http.get<Config>(this.userUrl);
+  }
+  getUserInfo(id){
+    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/'+id+'/profile'
+    return this.http.get<Config>(this.userUrl);
   }
   getUsersInChat(data){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'+data+'/users';
-    return this.http.get<Config>(this.chatUrl);
+    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'+data+'/users';
+    return this.http.get<Config>(this.userUrl);
     
   }
   getOwner(data){
     console.log(data)
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
-    return this.http.get<OwnerConfig>(this.chatUrl);
+    this.userUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
+    return this.http.get<OwnerConfig>(this.userUrl);
     
   }
   constructor(private http:HttpClient) { }

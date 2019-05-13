@@ -2,15 +2,24 @@ import { Component, OnInit, NgModule, ViewChild, ElementRef } from '@angular/cor
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
+import { UsersService } from '../services/users.service';
 // import { truncate } from 'fs';
 
 // import { AlertService, AuthenticationService } from '../_services';
+
+export interface UserConfig {
+    Users: any[]
+  }
+  export interface UserConfig2 {
+    Users: any
+  }
 
 @Component({
     selector: 'app-log-in',
   styleUrls: ['./log-in.component.css'],
     templateUrl: 'log-in.component.html'
 })
+
 export class LogInComponent implements OnInit {
     @ViewChild('username', {read: ElementRef}) username: ElementRef<HTMLElement>;
     @ViewChild('password', {read: ElementRef}) password: ElementRef<HTMLElement>;
@@ -22,10 +31,13 @@ export class LogInComponent implements OnInit {
     returnUrl: string;
     condition = false;
 
+    currentUser: string = "";
+
     constructor(
         // private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
+        private userService: UsersService
         // private authenticationService: AuthenticationService,
         // private alertService: AlertService
     ) {
@@ -42,15 +54,56 @@ export class LogInComponent implements OnInit {
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    setCurrentUser(user){
+      this.currentUser = user;
+    }
+
+    userConfig: UserConfig = {
+        Users: ["No Users to be Shown"]
+      }
+
+      userConfig2: UserConfig2 = {
+        Users: ["No Users to be Shown"]
+      }  
+
     ngOnInit() {
         this.loginForm = new FormGroup({
             username: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required)
         });
 
+        this.getUsers();
         // get return url from route parameters or default to '/'
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
+
+    delay(ms: number) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+      getUsers() {
+        (async () => {
+        // Do something before delay
+
+    
+        this.userService.getUsers()
+          .subscribe((data: UserConfig) => this.userConfig = {
+    
+            Users: data['Users']
+          });
+          await this.delay(1000);
+
+        })();
+      }
+      getUserInfo(id) {
+        (async () => {
+        // Do something before delay
+    
+        this.userService.getUserInfo(id)
+          .subscribe((data: UserConfig2) => this.userConfig2 = {
+            Users: data['Users']
+          });
+        })();
+      }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
@@ -103,6 +156,27 @@ export class LogInComponent implements OnInit {
         //             this.alertService.error(error);
         //             this.loading = false;
         //         });
+    }
+
+    tryLogin(username, password){
+      (async () => {
+        await this.delay(500);
+
+        let found = false;
+        for(let i = 0; i < this.userConfig.Users.length; i++){
+            this.getUserInfo(this.userConfig.Users[i].uid);
+            await this.delay(200);
+            if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
+                found = true;
+                break;
+            }
+            await this.delay(200);
+        }
+        if(found){
+          this.router.navigateByUrl('/dashboard');
+        }
+
+      })();
     }
 
     // setState(name, value){

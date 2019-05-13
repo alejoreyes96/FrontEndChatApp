@@ -108,11 +108,11 @@ export class GroupChatComponent implements OnInit {
       this.userService.getUsers()
         .subscribe((data: UserConfig) => this.userConfig = {
 
-          Users: data['Users']
-        });
-      await this.delay(50);
-    })();
+        Users: data['Users']
+      });
+      await this.delay(1000);
 
+    })();
   }
   getGroupChats() {
     (async () => {
@@ -187,15 +187,16 @@ export class GroupChatComponent implements OnInit {
       await this.delay(350);
       this.messages[0].text = "Welcome to " + this.config.GroupChats[this.gindex].gname + "!!";
 
-      for (var j = 0; j < this.userConfig.Users.length; j++) {
 
         this.messageService.getMessages(this.userConfig.Users[6].uid, this.config.GroupChats[this.gindex].gid)
           .subscribe((data: MessageConfig) => this.messageConfig = {
 
             Messages: data['Messages']
           });
-      }
+      
       await this.delay(50);
+      console.log(this.messageConfig)
+
       for (var i = 0; i < this.messageConfig.Messages.length; i++) {
         for (var k = 0; k < this.userConfig.Users.length; k++) {
 

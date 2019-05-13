@@ -25,7 +25,7 @@
     &nbsp;
     <div class="form-group">
       <div>
-        <button mat-button [disabled]="loading" routerLink="/dashboard" class="btn">Login</button>
+        <button mat-button [disabled]="loading" (click)="tryLogin(username, password)" class="btn">Login</button>
         &nbsp;
 
         <button mat-button routerLink="/register" class="btn">Register</button>

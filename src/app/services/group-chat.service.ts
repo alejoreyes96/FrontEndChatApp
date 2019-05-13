@@ -21,7 +21,6 @@ export interface GroupChatConfig {
 }
 
 
-
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -40,7 +39,6 @@ export class GroupChatService {
     getAllChats(){
       this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/';
       return this.http.get<GroupChatsConfig>(this.chatUrl);
-   
     }
     addUserToChat (userid1, groupchatid, userConfig: UserConfig): Observable<UserConfig>{
       this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/users/';
