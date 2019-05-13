@@ -81,19 +81,15 @@
       </div> -->
       <div class='card1' >
           {{this.hashConfig.Stats[0].Hashtag}} &nbsp; &nbsp;
-          <!-- {{this.hashConfig.Stats[1].Hashtag}} &nbsp; &nbsp;
-          {{this.hashConfig.Stats[2].Hashtag}} &nbsp; &nbsp;  -->
+          {{this.hashConfig.Stats[1].Hashtag}} &nbsp; &nbsp;
+          {{this.hashConfig.Stats[2].Hashtag}} &nbsp; &nbsp; 
           
         </div>
     </mat-card>
     &nbsp;
-    <mat-card class="mainCard">
-      Dashboard card 2
-    </mat-card>
-    &nbsp;
-    <mat-card class="mainCard">
-      dashboard card 3
-    </mat-card>
+    <mat-card class="cardChart">
+        <google-chart [title]="'Trends'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Hashtag','Usage']" [data]="dataset"></google-chart>
 
+    </mat-card>
   </mat-drawer-content>
 </mat-drawer-container>

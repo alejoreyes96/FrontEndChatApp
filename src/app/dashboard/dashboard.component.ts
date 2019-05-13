@@ -21,6 +21,7 @@ export interface UserConfig {
 export interface HashConfig {
   Stats: any[]
 }
+
 declare var $: any;
 
 
@@ -47,10 +48,12 @@ export class DashboardComponent implements OnInit {
     Stats: ["No Hashtags to be Shown"]
   };
   test: any;
-  GroupChat: any[] = [{
+  GroupChat: any[] = [
 
-  }];
-  dataset: any[] = [];
+  ];
+
+  dataset: any[] = new Array();
+  
   
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
@@ -85,10 +88,7 @@ getUsers() {
       });
 
       await this.delay(50);
-      for(var i =0; i<this.config.GroupChats.length; i++){
-        this.dataset.push(this.config.GroupChats[i].gname)
-      }
-      console.log(this.dataset);
+     
   })();
     
   }
@@ -129,9 +129,13 @@ getUsers() {
       
     });
     await this.delay(50);
+    for(var i =0; i<this.hashConfig.Stats.length;i++){
+      
+        this.dataset.push([this.hashConfig.Stats[i].Hashtag, this.hashConfig.Stats[i].Times_Used]);
+    }
   })();
 
-  }
+  } 
   
   
   getGid(gid){

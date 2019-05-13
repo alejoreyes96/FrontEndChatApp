@@ -264,7 +264,8 @@ export class GroupChatComponent implements OnInit {
     if(event.message.match(/#\w+/g)){
 
       hashtag = event.message.match(/#\w+/g);
-      console.log(hashtag);
+     
+    
     }
     (async () => {
       this.service.addMessage(this.userConfig.Users[6].uid, this.gid, JSON.parse(JSON.stringify({mmessage: event.message, mupload_date: new Date(), msize: 10, mlength: 5, mtype:"", mpath: "", mhashtag: hashtag })))
