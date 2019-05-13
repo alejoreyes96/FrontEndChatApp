@@ -19,6 +19,10 @@ import { GroupChatService } from './services/group-chat.service';
 import { MessagesService } from './services/messages.service';
 import { DataService } from './services/data.service';
 import { StatisticsService } from './services/statistics.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FilterPipe } from './filter.pipe';
+import { GoogleChartsModule } from 'angular-google-charts';
+ 
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +31,7 @@ import { StatisticsService } from './services/statistics.service';
     DashboardComponent,
     GroupChatComponent,
     ProfileComponent,
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +44,11 @@ import { StatisticsService } from './services/statistics.service';
     MatIconModule, 
     MatButtonModule, 
     LayoutModule,
+    GoogleChartsModule.forRoot(),
     MatSidenavModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   providers: [DataService, UsersService, GroupChatService, MessagesService, StatisticsService],

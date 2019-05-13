@@ -20,6 +20,7 @@ export class LogInComponent implements OnInit {
     loading = false;
     submitted = false;
     returnUrl: string;
+    condition = false;
 
     constructor(
         // private formBuilder: FormBuilder,

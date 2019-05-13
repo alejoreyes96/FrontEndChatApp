@@ -8,6 +8,10 @@ export interface Config {
   Users: any[]
 
 }
+export interface OwnerConfig {
+  Owner: any[]
+
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -22,6 +26,12 @@ export class UsersService {
   getUsersInChat(data){
     this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'+data+'/users';
     return this.http.get<Config>(this.chatUrl);
+    
+  }
+  getOwner(data){
+    console.log(data)
+    this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
+    return this.http.get<OwnerConfig>(this.chatUrl);
     
   }
   constructor(private http:HttpClient) { }

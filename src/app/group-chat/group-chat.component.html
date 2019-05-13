@@ -8,12 +8,12 @@
 
 <body>
   <div id="container">
-    <nb-chat class="title" title="{{this.config.GroupChats[gid].gname}}" size="large">
+    <nb-chat class="title" title="{{this.config.GroupChats[gindex].gname}}" size="large">
       <nb-chat-message *ngFor="let msg of messages" [type]="msg.type" [message]="msg.text" [reply]="msg.reply" [sender]="msg.user.name"
         [date]="msg.date" [files]="msg.files" [quote]="msg.quote" [latitude]="msg.latitude" [longitude]="msg.longitude"
         [avatar]="msg.user.avatar">
 
-      </nb-chat-message>
+      </nb-chat-message> 
 
 
       <nb-chat-form (send)="sendMessage($event)" [dropFiles]="true">
@@ -24,18 +24,57 @@
         &nbsp;
         &nbsp;
       <div class="owner">
-         {{this.ownerConfig.Owner[0]}}
+         {{this.ownerConfig.Owner.uname}}
       </div>
       &nbsp;
         &nbsp;
       <div>
-          List of Participants:
+          List of Participants: 
       </div>
       &nbsp;
         &nbsp;
       <div class="users" *ngFor="let user of this.usersInChatConfig.Users">
         {{user.uname}}
       </div>
+      <button data-toggle="modal" data-target="#myModal" (click)="showModal()" class="mdc-fab" style="color: black; background-color: whitesmoke; width: 35px; height: 35px;" aria-label="Add">
+          <span class="mdc-fab__icon material-icons">add</span>
+        </button>
+    
+               <!-- The Modal -->
+            <div class="modal fade openModal" id="myModal">
+                <div class="modal-dialog proceeds-modal">
+                  <div class="modal-content">
+              
+                    <!-- Modal Header -->
+                    <div class="modal-header ">
+                      <h4 class="modal-title">Add Contact to {{this.config.GroupChats[gindex].gname}}</h4>
+                      <!-- <button type="button" class="close" (click)="hideModal()">&times;</button> -->
+                    </div>
+                    &nbsp;
+                    &nbsp;
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <label for="username">Username </label>
+                        &nbsp;
+                        <input type="text" #username class="form-control" />
+                       
+                    </div>
+                    &nbsp;
+                    &nbsp;
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-primary" (click)="sendModal(username)" >Add</button>
+                      <button type="button" class="btn btn-danger" (click)="hideModal()">Close</button>
+              
+                      <!-- this button is hidden, used to close from typescript -->
+                      <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+          
+ 
+      
     </mat-card>
 
   </div> 

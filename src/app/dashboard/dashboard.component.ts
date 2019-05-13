@@ -1,7 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Pipe, PipeTransform } from '@angular/core';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import * as _ from 'lodash';
-import { map } from 'rxjs/operators'
 import { GroupChatService } from '../services/group-chat.service';
 import { UsersService } from '../services/users.service';
 import { MessagesService } from '../services/messages.service';
@@ -22,6 +21,8 @@ export interface UserConfig {
 export interface HashConfig {
   Stats: any[]
 }
+declare var $: any;
+
 
 @Component({
   selector: 'app-dashboard',
@@ -35,20 +36,39 @@ export class DashboardComponent implements OnInit {
   public gid: number;
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
-  }
+  };
   messageConfig: MessageConfig = {
     Messages: ["No Messages to be Shown"]
-  }
+  };
   userConfig: UserConfig  = {
     Users: ["No Users to be Shown"]
-  }
+  };
   hashConfig: HashConfig  = {
     Stats: ["No Hashtags to be Shown"]
-  }
+  };
   test: any;
+  GroupChat: any[] = [{
+
+  }];
+  dataset: any[] = [];
   
   delay(ms: number) {
     return new Promise( resolve => setTimeout(resolve, ms) );
+}
+
+getUsers() {
+  (async () => {
+    // Do something before delay
+
+
+    this.userService.getUsers()
+      .subscribe((data: UserConfig) => this.userConfig = {
+
+        Users: data['Users']
+      });
+    await this.delay(50);
+  })();
+
 }
   showChats(){
   
@@ -65,11 +85,39 @@ export class DashboardComponent implements OnInit {
       });
 
       await this.delay(50);
-  
+      for(var i =0; i<this.config.GroupChats.length; i++){
+        this.dataset.push(this.config.GroupChats[i].gname)
+      }
+      console.log(this.dataset);
+  })();
+    
+  }
+
+  createChat(name){
+    (async () => { 
+      // Do something before delay
+      
+ 
+      this.service.createGroupChat(this.userConfig.Users[6].uid, JSON.parse(JSON.stringify({ gname: name, gpicture_id: 'id.jpg' })))
+      .subscribe(chat => this.GroupChat.push(chat))  
+
+      await this.delay(50);
+      this.showChats();
 
 
   })();
-    
+  }
+  
+  showModal(): void {
+    $("#myModal").modal('show');
+  }
+  sendModal(name): void {
+    console.log(name.value);
+    this.createChat(name.value);
+    this.hideModal();
+  }
+  hideModal(): void {
+    document.getElementById('close-modal').click();
   }
 
   getHashStats(){
@@ -85,14 +133,16 @@ export class DashboardComponent implements OnInit {
 
   }
   
+  
   getGid(gid){
-    this.data.changeGid(gid-1);
+    this.data.changeGid(gid);
     console.log(gid)
   }
   constructor(private stats: StatisticsService, private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
   }
 
   ngOnInit() {
+    this.getUsers();
     this.getHashStats();
     this.showChats();
     this.data.currentMessage.subscribe(message => this.gid = message)

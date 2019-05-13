@@ -17,11 +17,51 @@
   </mat-grid-list>
 </div> -->
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+
 <mat-drawer-container class="example-container">
   <mat-drawer class="drawer" mode="side" opened>
     <div>
       <mat-card class="headerCard">
-        List of GroupChats
+        GroupChats <button data-toggle="modal" data-target="#myModal" (click)="showModal()" class="mdc-fab" style="color: black; background-color: whitesmoke; width: 30px; height: 30px;" aria-label="Add">
+            <span class="mdc-fab__icon material-icons">add</span>
+          </button>
+
+            
+          
+      
+                 <!-- The Modal -->
+              <div class="modal fade openModal" id="myModal">
+                  <div class="modal-dialog proceeds-modal">
+                    <div class="modal-content">
+                
+                      <!-- Modal Header -->
+                      <div class="modal-header ">
+                        <h4 class="modal-title">Create GroupChat</h4>
+                        <!-- <button type="button" class="close" (click)="hideModal()">&times;</button> -->
+                      </div>
+                      &nbsp;
+                      &nbsp;
+                      <!-- Modal body -->
+                      <div class="modal-body">
+                          <label for="username">Name </label>
+                          &nbsp;
+                          <input type="text" maxlength="20" #username class="form-control" />
+                         
+                      </div>
+                      &nbsp;
+                      &nbsp;
+                      <!-- Modal footer -->
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" (click)="sendModal(username)" >Create</button>
+                        <button type="button" class="btn btn-danger" (click)="hideModal()">Cancel</button>
+                
+                        <!-- this button is hidden, used to close from typescript -->
+                        <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Cancel</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
       </mat-card>
     </div>
     <div>
@@ -36,9 +76,15 @@
   <mat-drawer-content class="mainDrawer">
     <mat-card class="mainCard">
       Trending Topics:
-      <div class='card1' *ngFor="let hash of this.hashConfig.Stats">
-        #{{hash.Hashtag}} &nbsp; &nbsp; 
-      </div>
+      <!-- <div class='card1' *ngFor="let hash of this.hashConfig.Stats">
+        {{hash.Hashtag}} &nbsp; &nbsp; 
+      </div> -->
+      <div class='card1' >
+          {{this.hashConfig.Stats[0].Hashtag}} &nbsp; &nbsp;
+          <!-- {{this.hashConfig.Stats[1].Hashtag}} &nbsp; &nbsp;
+          {{this.hashConfig.Stats[2].Hashtag}} &nbsp; &nbsp;  -->
+          
+        </div>
     </mat-card>
     &nbsp;
     <mat-card class="mainCard">

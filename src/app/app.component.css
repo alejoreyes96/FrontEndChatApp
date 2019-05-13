@@ -1,3 +1,5 @@
+
+
 #header { 
     color: #ffffff;
      font-family: 'Droid serif', serif; 
@@ -11,17 +13,17 @@
      width: 100%;
     }
 .menu{
-    background-image: linear-gradient( rgb(222, 212, 224), rgb(208, 200, 211));
+    background-image: linear-gradient( rgb(230, 223, 231), rgb(235, 232, 236));
 }
 .items{
-background-color: rgb(202, 190, 206);
+background-color: rgb(238, 237, 238);
 }
 .items:hover{
-    background-color: rgb(115, 109, 117);
+    background-color: rgb(159, 153, 161);
 
 }
 .menu:hover{
-    background-image: linear-gradient( rgb(146, 138, 148), rgb(128, 122, 129));
+    background-image: linear-gradient( rgb(204, 204, 204), rgb(180, 179, 180));
 }
 #header:after{
     position: absolute;

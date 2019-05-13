@@ -15,13 +15,15 @@ export interface MessageConfig {
 export interface UserConfig {
   Users: any[]
 }
-export interface UsersInChatConfig {
-  Users: any[]
+export interface User {
+  User: any
 }
+
 export interface OwnerConfig {
-  Owner: any[] 
+  Owner: any
 
 }
+declare var $: any;
 
 @Component({
   selector: 'app-group-chat',
@@ -32,9 +34,10 @@ export interface OwnerConfig {
 export class GroupChatComponent implements OnInit {
 
   constructor(private data: DataService, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
-  gid: number = 1;
+  gid: number;
+  gindex: number;
   ownerConfig: OwnerConfig = {
-    Owner: ['No owner found']
+    Owner: 'No owner found'
   }
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
@@ -45,25 +48,42 @@ export class GroupChatComponent implements OnInit {
   userConfig: UserConfig = {
     Users: ["No Users to be Shown"]
   }
-  usersInChatConfig: UsersInChatConfig = {
+  usersInChatConfig: UserConfig = {
     Users: ["No Users to be Shown"]
+  }
+  userC: User = {
+    User: ""
   }
   file: any[] = [{
     url: '',
     type: '',
     icon: '',
   }]
+  addedUser: any[] = [{
+   
+  }]
+  addMessage: any[] = [{
 
-
+  }]
 
   ngOnInit() {
     this.getUsers();
     this.getGroupChats();
     this.data.currentMessage.subscribe(message => this.gid = message)
-    this.getOwner();
-    this.getUsersInChat();
     this.getMessages();
+    this.getUsersInChat();
 
+  }
+  showModal(): void {
+    $("#myModal").modal('show');
+  }
+  sendModal(username): void {
+    console.log(username.value)
+    this.addUserToChat(username.value);
+    this.hideModal();
+  }
+  hideModal(): void {
+    document.getElementById('close-modal').click();
   }
 
   messages: any[] = [{
@@ -82,51 +102,80 @@ export class GroupChatComponent implements OnInit {
   }
   getUsers() {
     (async () => {
-    // Do something before delay
+      // Do something before delay
 
 
-    this.userService.getUsers()
-      .subscribe((data: UserConfig) => this.userConfig = {
+      this.userService.getUsers()
+        .subscribe((data: UserConfig) => this.userConfig = {
 
-        Users: data['Users']
-      });
+          Users: data['Users']
+        });
       await this.delay(50);
     })();
 
   }
   getGroupChats() {
     (async () => {
-    // Do something before delay
-    this.service.getAllChats()
-      .subscribe((data: Config) => this.config = {
-
-        GroupChats: data['GroupChats']
-      });
-      await this.delay(50);
-    })();
-
-  }
-  getOwner() {
-    (async () => {
-
       // Do something before delay
-      this.service.getOwner(this.gid+1)
+      this.service.getAllChats()
+        .subscribe((data: Config) => this.config = {
+
+          GroupChats: data['GroupChats']
+        });
+      await this.delay(250);
+      this.getGIndex();
+
+    })();
+  }
+  getGIndex(){
+    for(var i=0; i<this.config.GroupChats.length;i++){
+      if(this.gid == this.config.GroupChats[i].gid){
+        console.log(i);
+        this.gindex = i;
+      }
+    }
+    console.log(this.gindex);
+    console.log(this.gid)
+  }
+
+  getUsersInChat() {
+    (async () => {
+      this.userService.getUsersInChat(this.gid)
+        .subscribe((data: UserConfig) => this.usersInChatConfig = {
+
+          Users: data['Users']
+        });
+      await this.delay(250);
+
+      this.userService.getOwner(this.gid)
         .subscribe((data: OwnerConfig) => this.ownerConfig = {
 
           Owner: data['Owner']
         });
-      await this.delay(150);
+      await this.delay(250);
+
     })();
   }
-  getUsersInChat(){
-    (async () => {
-    this.userService.getUsersInChat(this.gid+1)
-    .subscribe((data: UsersInChatConfig) => this.usersInChatConfig = {
+  addUserToChat(username) {
+    var uid2: number;
+    console.log(this.userConfig);
 
-      Users: data['Users']
-    });
-    await this.delay(250);
-  })();
+    (async () => {
+      await this.delay(250);
+
+      for (var i = 0; i < this.userConfig.Users.length; i++) {
+        if (this.userConfig.Users[i].uname == username)
+          uid2 = this.userConfig.Users[i].uid;
+      }
+      console.log(this.userConfig);
+      this.service.addUserToChat(this.userConfig.Users[6].uid, this.gid, JSON.parse(JSON.stringify({ uid: uid2 })))
+        .subscribe(user => this.addedUser.push(user))
+      await this.delay(250);
+      this.getUsersInChat();
+
+    })();
+
+
   }
   getMessages() {
     // this.service.getChats()
@@ -136,11 +185,11 @@ export class GroupChatComponent implements OnInit {
     (async () => {
       // Do something before delay
       await this.delay(350);
-      this.messages[0].text = "Welcome to the chat " + this.config.GroupChats[this.gid].gname + "!!";
+      this.messages[0].text = "Welcome to " + this.config.GroupChats[this.gindex].gname + "!!";
 
       for (var j = 0; j < this.userConfig.Users.length; j++) {
 
-        this.messageService.getMessages(this.userConfig.Users[0].uid, this.config.GroupChats[this.gid].gid)
+        this.messageService.getMessages(this.userConfig.Users[6].uid, this.config.GroupChats[this.gindex].gid)
           .subscribe((data: MessageConfig) => this.messageConfig = {
 
             Messages: data['Messages']
@@ -150,9 +199,9 @@ export class GroupChatComponent implements OnInit {
       for (var i = 0; i < this.messageConfig.Messages.length; i++) {
         for (var k = 0; k < this.userConfig.Users.length; k++) {
 
-           if (this.messageConfig.Messages[i].uid == this.userConfig.Users[k].uid) {
+          if (this.messageConfig.Messages[i].uid == this.userConfig.Users[k].uid) {
             this.loadMessage(this.messageConfig.Messages[i], this.userConfig.Users[k]);
-            
+
           }
 
         }
@@ -173,21 +222,36 @@ export class GroupChatComponent implements OnInit {
       type: event.mtype,
       icon: '',
     }];
-
-    this.messages.push({
-      text: event.mmessage,
-      date: event.mupload_date,
-      reply: false,
-      type: mtype,
-      files: files,
-      user: {
-        name: event2.uname,
-        avatar: event2.profile_picture,
-      },
-    });
+    if(event2 == this.userConfig.Users[6]){
+      this.messages.push({
+        text: event.mmessage,
+        date: event.mupload_date,
+        reply: true,
+        type: mtype,
+        files: files,
+        user: {
+          name: event2.uname,
+          avatar: event2.profile_picture,
+        },
+      });
+    }
+    else{
+      this.messages.push({
+        text: event.mmessage,
+        date: event.mupload_date,
+        reply: false,
+        type: mtype,
+        files: files,
+        user: {
+          name: event2.uname,
+          avatar: event2.profile_picture,
+        },
+      });
+    }
+   
   }
   sendMessage(event: any) {
-
+    
     const files = !event.files ? [] : event.files.map((file) => {
       return {
         url: file.src,
@@ -195,8 +259,17 @@ export class GroupChatComponent implements OnInit {
         icon: '',
       };
     });
-    console.log(files)
+    var hashtag = '';
+    if(event.message.match(/#\w+/g)){
 
+      hashtag = event.message.match(/#\w+/g);
+      console.log(hashtag);
+    }
+    (async () => {
+      this.service.addMessage(this.userConfig.Users[6].uid, this.gid, JSON.parse(JSON.stringify({mmessage: event.message, mupload_date: new Date(), msize: 10, mlength: 5, mtype:"", mpath: "", mhashtag: hashtag })))
+        .subscribe(message => this.addMessage.push(message))
+      await this.delay(250);
+    })();
     this.messages.push({
       text: event.message,
       date: new Date(),
@@ -204,8 +277,8 @@ export class GroupChatComponent implements OnInit {
       type: files.length ? 'file' : 'text',
       files: files,
       user: {
-        name: 'Ale',
-        avatar: 'https://i.gifer.com/no.gif',
+        name: this.userConfig.Users[6].uname,
+        avatar: this.userConfig.Users[6].profile_picture,
       },
     });
   }

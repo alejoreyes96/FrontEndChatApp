@@ -1,16 +1,25 @@
 import { Injectable, } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { HttpHeaders } from '@angular/common/http';
-import { HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable} from 'rxjs';
+
 
 export interface GroupChatsConfig {
   GroupChats: any[]
 
 }
-export interface OwnerConfig {
-  Owner: any[]
+export interface UserConfig {
+  User: any
 
 }
+export interface MessageConfig {
+  Message: any
+
+}
+export interface GroupChatConfig {
+  GroupChat: any
+
+}
+
 
 
 const httpOptions = {
@@ -24,6 +33,7 @@ const httpOptions = {
 export class GroupChatService {
   constructor(private http:HttpClient) { 
   }
+ 
 
     chatUrl: string;
     
@@ -32,11 +42,26 @@ export class GroupChatService {
       return this.http.get<GroupChatsConfig>(this.chatUrl);
    
     }
-    getOwner(data){
-      this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
-      return this.http.get<OwnerConfig>(this.chatUrl);
-      
+    addUserToChat (userid1, groupchatid, userConfig: UserConfig): Observable<UserConfig>{
+      this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/users/';
+      console.log(this.chatUrl);
+      return this.http.post<UserConfig>(this.chatUrl, userConfig, httpOptions);
+  
     }
+    addMessage (userid1, groupchatid, userConfig: MessageConfig): Observable<MessageConfig>{
+      this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/messages/';
+      console.log(this.chatUrl);
+      return this.http.post<MessageConfig>(this.chatUrl, userConfig, httpOptions);
+  
+    }
+
+    createGroupChat (userid1, userConfig: GroupChatConfig): Observable<GroupChatConfig>{
+      this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+userid1+'/groupChats/';
+      console.log(this.chatUrl);
+      return this.http.post<GroupChatConfig>(this.chatUrl, userConfig, httpOptions);
+  
+    }
+    
  
     
 }
