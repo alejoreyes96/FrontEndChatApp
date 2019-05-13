@@ -20,7 +20,7 @@ export interface User {
 }
 
 export interface OwnerConfig {
-  Owner: any
+  Owner: any[]
 
 }
 declare var $: any;
@@ -37,7 +37,7 @@ export class GroupChatComponent implements OnInit {
   gid: number;
   gindex: number;
   ownerConfig: OwnerConfig = {
-    Owner: 'No owner found'
+    Owner: ['No owner found']
   }
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]

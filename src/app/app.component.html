@@ -10,9 +10,9 @@
     </div>
 
     <mat-menu #menu="matMenu">
-      <button mat-menu-item class="items" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
-      <button mat-menu-item class="items" routerLink="/group-chat" routerLinkActive="active">GroupChats</button>
-      <button mat-menu-item class="items" routerLink="/log-in" routerLinkActive="active">SignOut</button>
+      <button mat-menu-item class="items" routerLink="/dashboard" (click)="refresh()" routerLinkActive="active">Dashboard</button>
+      <button mat-menu-item class="items" routerLink="/group-chat" (click)="refresh()" routerLinkActive="active">GroupChats</button>
+      <button mat-menu-item class="items" routerLink="/log-in" (click)="refresh()" routerLinkActive="active">SignOut</button>
 
     </mat-menu>
 
