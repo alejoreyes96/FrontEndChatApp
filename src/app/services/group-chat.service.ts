@@ -12,7 +12,13 @@ export interface UserConfig {
 
 }
 export interface MessageConfig {
-  Message: any
+  mmessage: any, 
+      mupload_date: any, 
+      msize: number, 
+      mlength: number, 
+      mtype:any,
+        mhashtag: any,
+         image: any
 
 }
 export interface GroupChatConfig {
@@ -32,6 +38,7 @@ const httpOptions = {
 export class GroupChatService {
   constructor(private http:HttpClient) { 
   }
+
  
 
     chatUrl: string;

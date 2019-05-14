@@ -137,7 +137,9 @@ getUsers() {
 
   } 
   
-  
+  refresh(): void {
+    window.location.reload();
+}
   getGid(gid){
     this.data.changeGid(gid);
     console.log(gid)
@@ -146,6 +148,7 @@ getUsers() {
   }
 
   ngOnInit() {
+    // this.refresh();
     this.getUsers();
     this.getHashStats();
     this.showChats();
