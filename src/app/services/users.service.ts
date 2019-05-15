@@ -28,28 +28,29 @@ const httpOptions = {
 })
 
 export class UsersService {
+  ngrokUrl: string = "1c98dd52.ngrok.io";
   userUrl: string;
   addUser (userConfig: UserConfig): Observable<UserConfig>{
-    this.userUrl = 'http://127.0.0.1:5000/FFMA/register/';
+    this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/register/';
     console.log(this.userUrl);
     return this.http.post<UserConfig>(this.userUrl, userConfig, httpOptions);
   }
   getUsers(){
-    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/'
+    this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'
     return this.http.get<Config>(this.userUrl);
   }
   getUserInfo(id){
-    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/'+id+'/profile'
+    this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'+id+'/profile'
     return this.http.get<Config>(this.userUrl);
   }
   getUsersInChat(data){
-    this.userUrl = 'http://127.0.0.1:5000/FFMA/users/1/groupChats/'+data+'/users';
+    this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/users/1/groupChats/'+data+'/users';
     return this.http.get<Config>(this.userUrl);
     
   }
   getOwner(data){
     console.log(data)
-    this.userUrl = 'http://127.0.0.1:5000/FFMA/groupChats/'+data+'/owner/';
+    this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/groupChats/'+data+'/owner/';
     return this.http.get<OwnerConfig>(this.userUrl);
     
   }

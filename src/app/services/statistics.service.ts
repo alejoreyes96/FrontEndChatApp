@@ -9,25 +9,26 @@ export interface Config {
   providedIn: 'root'
 })
 export class StatisticsService {
+  ngrokUrl: string = "1c98dd52.ngrok.io";
 chatUrl: string;
   getHashStats(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/Stats/Hashtags';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/Hashtags';
     return this.http.get<Config>(this.chatUrl);
   }
   getLikeStats(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/Stats/LikesPerDay';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/LikesPerDay';
     return this.http.get<Config>(this.chatUrl);
   }
   getDislikeStats(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/Stats/DislikesPerDay';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/DislikesPerDay';
     return this.http.get<Config>(this.chatUrl);
   }
   getRepliesStats(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/Stats/RepliesPerDay';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/RepliesPerDay';
     return this.http.get<Config>(this.chatUrl);
   }
   getMessageStats(){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/Stats/MessagesPerDay';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/MessagesPerDay';
     return this.http.get<Config>(this.chatUrl);
   }
   
