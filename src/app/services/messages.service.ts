@@ -14,9 +14,10 @@ export interface Config {
   providedIn: 'root'
 })
 export class MessagesService {
+  ngrokUrl: string = "1c98dd52.ngrok.io";
   chatUrl: string;
   getMessages(uid, gid){
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/'+uid+'/groupChats/'+gid+'/messages';
+    this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'+uid+'/groupChats/'+gid+'/messages';
     return this.http.get<Config>(this.chatUrl);
   }
   

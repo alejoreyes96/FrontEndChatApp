@@ -166,7 +166,7 @@ export class LogInComponent implements OnInit {
       this.submitted = true;
       (async () => {
         await this.delay(500);
-        this.found = false;
+        let found = false;
         for(let i = 0; i < this.userConfig.Users.length; i++){
             this.getUserInfo(this.userConfig.Users[i].uid);
             await this.delay(200);
@@ -177,7 +177,7 @@ export class LogInComponent implements OnInit {
             }
             await this.delay(200);
         }
-        if(this.found){
+        if(found){
           this.router.navigateByUrl('/dashboard');
         }
 
