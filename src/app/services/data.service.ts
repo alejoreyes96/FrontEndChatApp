@@ -5,13 +5,18 @@ import { BehaviorSubject } from 'rxjs';
 export class DataService {
 
   private messageSource = new BehaviorSubject(1);
-  currentMessage = this.messageSource.asObservable();
+  private user = new BehaviorSubject("");
 
+  currentMessage = this.messageSource.asObservable();
+  currentUser = this.user.asObservable();
   constructor() { }
 
   changeGid(message: number) {
-    this.messageSource.next(message)
+    this.messageSource.next(message);
 
+  }
+  login(username: string){
+    this.user.next(username);
   }
 
 }

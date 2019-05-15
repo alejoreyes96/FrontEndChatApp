@@ -1,14 +1,13 @@
 @import url( 'https://fonts.googleapis.com/css?family=Roboto:400,700|Material+Icons');
 
 @import url('https://fonts.googleapis.com/css?Family=Roboto:300,400,500,700');
-@import "../../../node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css";
 
 .mainCard{
   width:48%;
   height: 100%;
-  color: white;
+  color: black;
   text-align: left;
-  background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+  background-color: rgb(213, 226, 228);
   font-family: 'Droid serif', serif; 
   
 }
@@ -26,7 +25,7 @@
 
 }
 #card {
-  color: white;
+  color: black;
   }
   #card:after{
     position: absolute;
@@ -42,7 +41,7 @@
   .pic {
     width:48%;
     height: 100%;
-    background-image: linear-gradient( rgb(63, 46, 141), rgb(59, 34, 150));
+    background-color: rgb(213, 226, 228);
 
   }
   #container > .pic {

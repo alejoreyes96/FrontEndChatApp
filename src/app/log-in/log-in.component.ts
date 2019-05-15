@@ -2,7 +2,8 @@ import { Component, OnInit, NgModule, ViewChild, ElementRef } from '@angular/cor
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { UsersService } from '../services/users.service';
+import { UsersService} from '../services/users.service';
+import { DataService } from '../services/data.service'
 // import { truncate } from 'fs';
 
 // import { AlertService, AuthenticationService } from '../_services';
@@ -31,14 +32,15 @@ export class LogInComponent implements OnInit {
     returnUrl: string;
     condition = false;
     found: boolean = false;
-
+    user: string;
     currentUser: string = "";
 
     constructor(
         // private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private userService: UsersService
+        private userService: UsersService,
+        private data: DataService
         // private authenticationService: AuthenticationService,
         // private alertService: AlertService
     ) {
@@ -68,6 +70,7 @@ export class LogInComponent implements OnInit {
       }  
 
     ngOnInit() {
+        this.data.currentUser.subscribe(user => this.user = user)
         this.loginForm = new FormGroup({
             username: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required)
@@ -169,6 +172,7 @@ export class LogInComponent implements OnInit {
             await this.delay(200);
             if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
                 this.found = true;
+                this.data.login(username);
                 break;
             }
             await this.delay(200);
@@ -217,67 +221,3 @@ validateEmail(inputText){
     }
 
 }
-
-// import { Component, OnInit } from '@angular/core';
-
-
-// @Component({
-//   selector: 'app-log-in',
-//   templateUrl: './log-in.component.html',
-//   styleUrls: ['./log-in.component.css']
-// })
-
-// export class LogInComponent implements OnInit {
-//   validEmail: boolean;
-//   state: any = [{
-//     email: '',
-//     password: ''
-//   }]
-//   constructor() {
-  
-
-//     this.validEmail = false;
-
-    // this.handleChange = this.handleChange.bind(this);
-
-//     this.handleSubmit = this.handleSubmit.bind(this);
-// }
-//  setState(name: any){
-//   this.state.email = name;
-//  }
-
-// handleChange(e){
-//     let target = e.target;
-//     let value = target.type === 'checkbox' ? target.checked : target.value;
-//     let name = target.name;
-
-//     this.setState({
-//         [name]:value
-//     });
-// }
-
-// handleSubmit(e){
-//     e.preventDefault();
-//     this.validEmail = this.validateEmail(this.state.email);
-//     if(!this.validEmail){
-//         console.log('Not Valid!');
-//     }
-//     console.log('The form was submitted with the following data:');
-//     console.log(this.state);
-// }
-
-// validateEmail(inputText){
-//     var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-//     if(inputText.match(mailformat)){
-//         //document.form1.text1.focus();
-//         return true;
-//         } else {
-//             alert("You have entered an invalid email address!");
-//             //document.form1.text1.focus();
-//             return false;
-//         }
-//     }
-//   ngOnInit() {
-//   }
-
-// }

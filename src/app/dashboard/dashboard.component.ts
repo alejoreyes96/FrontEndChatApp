@@ -129,7 +129,6 @@ getUsers() {
     $("#myModal").modal('show');
   }
   sendModal(name): void {
-    console.log(name.value);
     this.createChat(name.value);
     this.hideModal();
   }
@@ -198,7 +197,6 @@ getUsers() {
       
         this.likeStats.push([this.likeConfig.Stats[i].Date, this.likeConfig.Stats[i].Amount_Per_Day]);
     }
-    console.log(this.likeStats);
   })();
 
   } 
@@ -215,7 +213,6 @@ getUsers() {
       
         this.messageStats.push([this.messageStatConfig.Stats[i].Date, this.messageStatConfig.Stats[i].Amount_Per_Day]);
     }
-    console.log(this.likeStats);
   })();
 
   } 
@@ -225,7 +222,6 @@ getUsers() {
 }
   getGid(gid){
     this.data.changeGid(gid);
-    console.log(gid)
   }
   constructor(private stats: StatisticsService, private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
   }
