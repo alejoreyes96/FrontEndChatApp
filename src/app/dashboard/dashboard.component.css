@@ -50,11 +50,10 @@
   height: 60%;
   color: black;
   background-color: white;
-  font-family: 'Droid serif', serif; 
-  font-size: 36px; 
-  font-weight: 400; 
-  font-style: italic; 
-  line-height: 44px; 
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: flex-start;
   margin: 0 0 12px;
   
 }

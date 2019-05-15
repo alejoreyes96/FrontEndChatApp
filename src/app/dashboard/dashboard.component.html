@@ -75,7 +75,7 @@
   </mat-drawer>
   <mat-drawer-content class="mainDrawer">
     <mat-card class="mainCard">
-      Trending Topics:
+      Trending Topics and Stats Globally:
       <!-- <div class='card1' *ngFor="let hash of this.hashConfig.Stats">
         {{hash.Hashtag}} &nbsp; &nbsp; 
       </div> -->
@@ -88,8 +88,20 @@
     </mat-card>
     &nbsp;
     <mat-card class="cardChart">
-        <google-chart [title]="'Trends'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Hashtag','Usage']" [data]="dataset"></google-chart>
+        <google-chart [title]="'Trends'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Hashtag','Usage']" [data]="hashStats"></google-chart>
+        <google-chart [title]="'Posts'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Messages','Posts']" [data]="messageStats"></google-chart>
+
 
     </mat-card>
+    <mat-card class="cardChart">
+        <google-chart [title]="'LikesPerDay'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Date','Likes']" [data]="likeStats"></google-chart>
+        <google-chart [title]="'DislikesPerDay'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Date','Dislikes']" [data]="dislikeStats"></google-chart>
+
+    </mat-card>
+    <mat-card class="cardChart">
+        <google-chart [title]="'RepliesPerDay'" style="width: 50%; height:100%;" [type]="'BarChart'" [columnNames]="['Date','Replies']" [data]="replyStats"></google-chart>
+
+    </mat-card>
+
   </mat-drawer-content>
 </mat-drawer-container>

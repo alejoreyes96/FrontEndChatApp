@@ -30,6 +30,7 @@ export class LogInComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     condition = false;
+    found: boolean = false;
 
     currentUser: string = "";
 
@@ -162,17 +163,17 @@ export class LogInComponent implements OnInit {
       this.submitted = true;
       (async () => {
         await this.delay(500);
-        let found = false;
+        this.found = false;
         for(let i = 0; i < this.userConfig.Users.length; i++){
             this.getUserInfo(this.userConfig.Users[i].uid);
             await this.delay(200);
             if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
-                found = true;
+                this.found = true;
                 break;
             }
             await this.delay(200);
         }
-        if(found){
+        if(this.found){
           this.router.navigateByUrl('/dashboard');
         }
 
