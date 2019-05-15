@@ -120,7 +120,7 @@ export class GroupChatComponent implements OnInit {
       this.service.getAllChats()
         .subscribe((data: Config) => this.config = {
 
-          GroupChats: data['GroupChats']
+          GroupChats: data['GroupChats'] 
         });
       await this.delay(250);
       this.getGIndex();
@@ -174,8 +174,6 @@ export class GroupChatComponent implements OnInit {
       this.getUsersInChat();
 
     })();
-
-
   }
   getMessages() {
     // this.service.getChats()

@@ -22,7 +22,9 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
-
+    addedUser: any[] = [{
+   
+    }]
     constructor(
         // private formBuilder: FormBuilder,
         private router: Router,
@@ -109,8 +111,7 @@ export class RegisterComponent implements OnInit {
       let dayValid = false;
       let monthValid = false;
       let yearValid = false;
-      console.log("Month", month, "Day", day, "Year", year);
-      if(birthdate.value.length == 10){
+      if(birthdate.value.length == 10 && birthdate.value[2] == '/' && birthdate.value[5] == '/'){
         if(year >= 0){
           yearValid = true;
         }
@@ -145,9 +146,17 @@ export class RegisterComponent implements OnInit {
       return valid;
     }
 
+    validPhone(phone_number){
+      let valid = false;
+      if(!isNaN(Number(phone_number.value)) && phone_number.value.length == 10){
+        valid = true;
+      }
+      return valid;
+    }
+
     checkUsername(username){
         let valid = false;
-        if(username.value.length > 2 && !this.verifyUsername(username.value)){
+        if(!this.verifyUsername(username.value)){
             valid = true;
         }
         console.log("Valid?", valid)
@@ -156,23 +165,51 @@ export class RegisterComponent implements OnInit {
 
     verifyUsername(username){
         let found = false;
-    
             for(let i = 0; i < this.userConfig.Users.length; i++){
-
                 if(this.userConfig.Users[i].uname === username){
                     found = true;
                     break;
                 }
             }
-    
           return found;
     }
+
+    checkEmail(email){
+      var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+      if(email.value.match(mailformat)){
+          // document.form1.text1.focus();
+          return true;
+          } else {
+              // alert("You have entered an invalid email address!");
+              //document.form1.text1.focus();
+              return false;
+          }
+      }
     // convenience getter for easy access to form fields
     get f() { return this.registerForm.controls; }
 
-    onSubmit() {
+    addUser(first_name, last_name, birthdate, phone_number, username, email, password) {
+  
+      (async () => {
+        await this.delay(250);
+  
+        this.userService.addUser(JSON.parse(JSON.stringify({ first_name: first_name.value, last_name: last_name.value, birth_date: birthdate.value, 
+          phone: phone_number.value, username: username.value, email: email.value, password: password.value})))
+          .subscribe(user => this.addedUser.push(user))
+        await this.delay(250);
+        this.getUsers();
+  
+      })();
+    }
+
+    onSubmit(first_name, last_name, birthdate, phone_number, username, email, password) {
         this.submitted = true;
         console.log("On Submit");
+        if(!this.empty(first_name) && !this.empty(last_name) && this.validBirthdate(birthdate) && !this.empty(birthdate) && this.validPhone(phone_number)
+        && !this.empty(phone_number) && this.checkUsername(username) && username.value.length >= 4 && this.checkEmail(email) && password.value.length >= 8){
+          this.addUser(first_name, last_name, birthdate, phone_number, username, email, password);
+          this.router.navigateByUrl('/dashboard');
+        }
         // stop here if form is invalid
         // if (this.registerForm.invalid) {
         //     return;

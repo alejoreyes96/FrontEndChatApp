@@ -12,6 +12,11 @@ export interface OwnerConfig {
   Owner: any[]
 
 }
+
+export interface UserConfig {
+  User: any
+
+}
 const httpOptions = {
   headers: new HttpHeaders({
     'Content-Type':  'application/json'
@@ -24,6 +29,11 @@ const httpOptions = {
 
 export class UsersService {
   userUrl: string;
+  addUser (userConfig: UserConfig): Observable<UserConfig>{
+    this.userUrl = 'http://127.0.0.1:5000/FFMA/register/';
+    console.log(this.userUrl);
+    return this.http.post<UserConfig>(this.userUrl, userConfig, httpOptions);
+  }
   getUsers(){
     this.userUrl = 'http://127.0.0.1:5000/FFMA/users/'
     return this.http.get<Config>(this.userUrl);
