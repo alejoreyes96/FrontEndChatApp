@@ -231,7 +231,6 @@ getUsers() {
   }
 
   ngOnInit() {
-    // this.refresh();
     this.getUsers();
     this.getHashStats();
     this.getDislikeStats();
