@@ -11,7 +11,7 @@
                 <input type="text" #first_name class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(first_name)">First Name is required</div>
+                <div *ngIf="empty(first_name)"><font color="yellow">WARNING:  First name is required</font></div>
             </div>
         </div>
         &nbsp;
@@ -23,75 +23,90 @@
                 <input type="text" #last_name class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(last_name)">Last Name is required</div>
+                <div *ngIf="empty(last_name)"><font color="yellow">WARNING:  Last name is required</font></div>
             </div>
         </div>
         &nbsp;
         &nbsp;
         <div id="card" class="form-group">
             <div id="card" class="form-group">
-                <label for="birthdate">Birthdate </label>
+                <label for="birthdate">Birth Date (MM/DD/YYYY) </label>
                 &nbsp;
                 <input type="text" #birthdate class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="!validBirthdate(birthdate)">Birthdate is not valid</div>
+                <div *ngIf="!validBirthdate(birthdate)"><font color="red">INVALID:  Birth date is not valid</font></div>
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(birthdate)">Birthdate is required</div>
+                <div *ngIf="empty(birthdate)"><font color="yellow">WARNING:  Birth date is required</font></div>
             </div>
         </div>
         &nbsp;
-        <!-- &nbsp;
+        &nbsp;
         <div id="card" class="form-group">
-            <label for="phone">Phone Number </label>
-            <input type="text" formControlName="phone" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.phone.errors }" />
-            <div *ngIf="submitted && f.phone.errors" class="invalid-feedback">
-                <div *ngIf="f.phone.errors.required">Last Name is required</div>
+            <div id="card" class="form-group">
+                <label for="phone_number">Phone Number (No Dashes)</label>
+                &nbsp;
+                <input type="text" #phone_number class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!validPhone(phone_number)"><font color="red">INVALID:  Phone number is not valid</font></div>
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(phone_number)"><font color="yellow">WARNING:  Phone number is required</font></div>
             </div>
         </div>
-        &nbsp; -->
-        <!-- &nbsp;
+        &nbsp;
+        &nbsp;
         <div id="card" class="form-group">
             <label for="username">Username </label>
             &nbsp;
             <input type="text" #username class="form-control" />
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="!checkUsername(username)">Username not valid or unavailable</div>
+                <div *ngIf="!checkUsername(username)"><font color="red">INVALID:  Username not valid or unavailable</font></div>
             </div>
-        </div>
-        &nbsp; -->
-        <!-- &nbsp;
-        <div id="card" class="form-group">
-            <label for="email">E-mail </label>
-            <input type="email" formControlName="username" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                <div *ngIf="f.email.errors.required">Username is required</div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="username.value.length < 4"><font color="yellow">WARNING:  Username required or too short</font></div>
             </div>
         </div>
         &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <label for="email">Email Address </label>
+            &nbsp;
+            <input type="text" #email class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!checkEmail(email)"><font color="red">INVALID:  Not a valid email address</font></div>
+            </div>
+        </div>
         &nbsp;
         <div id="card" class="form-group">
             <label for="password">Password </label>
-            <input type="password" formControlName="password" class="form-control"
-                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                <div *ngIf="f.password.errors.required">Password is required</div>
-                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+            &nbsp;
+            <input type="password" #password class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="password.value.length < 8"><font color="yellow">WARNING:  Password must contain at least 8 characters or symbols</font></div>
             </div>
         </div>
         &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <label for="password">Retype password </label>
+            &nbsp;
+            <input type="password" #password2 class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="password.value != password2.value"><font color="yellow">WARNING:  Passwords don't match</font></div>
+            </div>
+        </div>
         &nbsp;
         <div>
 
         </div>
-        &nbsp; -->
+        &nbsp;
         &nbsp;
         <div class="form-group">
 
-            <button mat-button [disabled]="loading" (click)="onSubmit()" class="btn">Register </button>
+            <button mat-button [disabled]="loading" (click)="onSubmit(first_name, last_name, birthdate, phone_number, username, email, password)" class="btn">Register </button>
             &nbsp;
             &nbsp;
             <button mat-button [disabled]="loading" routerLink="/log-in" class="btn">Login </button>
