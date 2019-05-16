@@ -22,6 +22,15 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    pfirst = "First name";
+    plast = "Last name";
+    pbirth = "Birth date";
+    pphone = "Phone number";
+    pusername = "Username";
+    pemail = "Email address";
+    ppassword = "Password";
+    ppassword2 = "Retype password";
+
     addedUser: any[] = [{
    
     }]
@@ -196,7 +205,7 @@ export class RegisterComponent implements OnInit {
         this.userService.addUser(JSON.parse(JSON.stringify({ first_name: first_name.value, last_name: last_name.value, birth_date: birthdate.value, 
           phone: phone_number.value, username: username.value, email: email.value, password: password.value})))
           .subscribe(user => this.addedUser.push(user))
-        await this.delay(250);
+        await this.delay(500);
         this.getUsers();
   
       })();
@@ -210,22 +219,5 @@ export class RegisterComponent implements OnInit {
           this.addUser(first_name, last_name, birthdate, phone_number, username, email, password);
           this.router.navigateByUrl('/dashboard');
         }
-        // stop here if form is invalid
-        // if (this.registerForm.invalid) {
-        //     return;
-        // }
-
-        // this.loading = true;
-        // this.userService.register(this.registerForm.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
     }
 }
