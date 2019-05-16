@@ -16,6 +16,7 @@ export class DataService {
 
   }
   login(username: string){
+    console.log(username);
     this.user.next(username);
   }
 

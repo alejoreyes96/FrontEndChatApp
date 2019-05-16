@@ -36,7 +36,7 @@
       <div class="users" *ngFor="let user of this.usersInChatConfig.Users">
         {{user.uname}}
       </div>
-      <button data-toggle="modal" data-target="#myModal" (click)="showModal()" class="mdc-fab" style="color: black; background-color: whitesmoke; width: 35px; height: 35px;" aria-label="Add">
+      <button data-toggle="modal" data-target="#myModal" class="mdc-fab" style="color: black; background-color: whitesmoke; width: 35px; height: 35px;" aria-label="Add">
           <span class="mdc-fab__icon material-icons">add</span>
         </button>
     
@@ -68,6 +68,34 @@
               
                       <!-- this button is hidden, used to close from typescript -->
                       <button type="button" id="close-modal" data-dismiss="modal" style="display: none">Close</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+               <!-- The Modal -->
+            <div class="modal fade openModal" id="ErrModal">
+                <div class="modal-dialog proceeds-modal">
+                  <div class="modal-content">
+              
+                    <!-- Modal Header -->
+                    <div class="modal-body ">
+                      <h4 class="modal-title">Only {{this.ownerConfig.Owner[0].uname}} can add contacts to {{this.config.GroupChats[gindex].gname}}!!</h4>
+                      <div>
+                        &nbsp;
+                      </div>
+                                      Request Denied
+
+                      <!-- <button type="button" class="close" (click)="hideModal()">&times;</button> -->
+                    </div>
+                    
+                    &nbsp;
+                    &nbsp;
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+              
+                      <!-- this button is hidden, used to close from typescript -->
+                      <button type="button" class="btn btn-danger" id="close-modal" data-dismiss="modal" >Close</button>
                     </div>
                   </div>
                 </div>

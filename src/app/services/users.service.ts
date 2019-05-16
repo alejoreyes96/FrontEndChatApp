@@ -28,7 +28,8 @@ const httpOptions = {
 })
 
 export class UsersService {
-  ngrokUrl: string = "1c98dd52.ngrok.io";
+  // ngrokUrl: string = "1c98dd52.ngrok.io";
+  ngrokUrl: string = 'localhost:5000';
   userUrl: string;
   addUser (userConfig: UserConfig): Observable<UserConfig>{
     this.userUrl = 'http://'+this.ngrokUrl+'/FFMA/register/';

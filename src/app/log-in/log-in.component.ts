@@ -166,22 +166,23 @@ export class LogInComponent implements OnInit {
       this.submitted = true;
       (async () => {
         await this.delay(500);
-        let found = false;
         for(let i = 0; i < this.userConfig.Users.length; i++){
             this.getUserInfo(this.userConfig.Users[i].uid);
             await this.delay(200);
             if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
                 this.found = true;
-                this.data.login(username);
+                this.data.login(username.value);
+                console.log('works')
                 break;
             }
             await this.delay(200);
         }
-        if(found){
-          this.router.navigateByUrl('/dashboard');
-        }
+        if(this.found){
+            this.router.navigateByUrl('/dashboard');
+          }
 
       })();
+      
     }
 
     // setState(name, value){

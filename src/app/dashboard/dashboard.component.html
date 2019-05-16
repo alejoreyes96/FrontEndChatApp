@@ -65,7 +65,7 @@
       </mat-card>
     </div>
     <div>
-      <mat-card (click)="getGid(chat.gid)" *ngFor="let chat of this.config.GroupChats" routerLink="/group-chat"
+      <mat-card (click)="getGid(chat.gid)" *ngFor="let chat of this.Chats.GroupChats" routerLink="/group-chat"
         routerLinkActive="active" class="card">
 
         {{chat.gname}}

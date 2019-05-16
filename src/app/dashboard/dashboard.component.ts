@@ -35,8 +35,12 @@ declare var $: any;
 
 export class DashboardComponent implements OnInit {
   public gid: number;
+  number: number;
   config: Config = {
     GroupChats: ["No GroupChats to be Shown"]
+  };
+  Chats: Config = {
+    GroupChats: []
   };
   messageConfig: MessageConfig = {
     Messages: ["No Messages to be Shown"]
@@ -59,10 +63,13 @@ export class DashboardComponent implements OnInit {
   messageStatConfig: StatsConfig  = {
     Stats: ["No messages to be Shown"]
   };
+  userChatConfig: UserConfig = {
+    Users: ["No Chats to be shown"]
+  };
   test: any;
-  GroupChat: any[] = [
-
-  ];
+  user: string;
+  GroupChat: any[] = [];
+ 
 
   hashStats: any[] = new Array();
   likeStats: any[] = new Array();
@@ -94,9 +101,7 @@ getUsers() {
   
     (async () => { 
       // Do something before delay
-      
- 
-  
+    
   
       this.service.getAllChats()
       .subscribe((data: Config) => this.config = {
@@ -105,6 +110,23 @@ getUsers() {
       });
 
       await this.delay(50);
+      for(var i = 0; i< this.config.GroupChats.length;i++ ){
+        this.userService.getUsersInChat(this.config.GroupChats[i].gid)
+        .subscribe((data: UserConfig) => this.userChatConfig = {
+  
+          Users: data['Users']
+        });
+        await this.delay(50);
+        for(var j=0; j<this.userChatConfig.Users.length; j++){
+          if(this.user == this.userChatConfig.Users[j].uname){
+            this.Chats.GroupChats.push(this.config.GroupChats[i]);
+            console.log(this.user);
+            break;
+          }
+        }
+
+    }
+      
      
   })();
     
@@ -113,9 +135,14 @@ getUsers() {
   createChat(name){
     (async () => { 
       // Do something before delay
+      for(var i=0;i<this.userConfig.Users.length;i++){
+        if(this.user == this.userConfig.Users[i].uname){
+          this.number = i;
+          break;
+        }
+      }
       
- 
-      this.service.createGroupChat(this.userConfig.Users[6].uid, JSON.parse(JSON.stringify({ gname: name, gpicture_id: 'id.jpg' })))
+      this.service.createGroupChat(this.userConfig.Users[this.number].uid, JSON.parse(JSON.stringify({ gname: name, gpicture_id: 'id.jpg' })))
       .subscribe(chat => this.GroupChat.push(chat))  
 
       await this.delay(50);
@@ -184,6 +211,13 @@ getUsers() {
   })();
 
   } 
+  htmlDelay(){
+    (async () => {
+      await this.delay(1000);
+
+  })();
+
+  }
   getLikeStats(){
     (async () => { 
 
@@ -227,6 +261,8 @@ getUsers() {
   }
 
   ngOnInit() {
+   
+    this.data.currentUser.subscribe(user => this.user = user)
     this.getUsers();
     this.getHashStats();
     this.getDislikeStats();

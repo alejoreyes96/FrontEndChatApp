@@ -9,7 +9,9 @@ export interface Config {
   providedIn: 'root'
 })
 export class StatisticsService {
-  ngrokUrl: string = "1c98dd52.ngrok.io";
+  // ngrokUrl: string = "1c98dd52.ngrok.io";
+  ngrokUrl: string = 'localhost:5000';
+
 chatUrl: string;
   getHashStats(){
     this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/Stats/Hashtags';
