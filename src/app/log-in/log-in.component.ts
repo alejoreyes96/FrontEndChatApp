@@ -37,8 +37,10 @@ export class LogInComponent implements OnInit {
     returnUrl: string;
     condition = false;
     found: boolean = false;
+    notFound: boolean = false;
     user: string;
     currentUser: string = "";
+    signed: any[] = [];
     hashConfig: StatsConfig = {
         Stats: ["No Hashtags to be Shown"]
     };
@@ -171,45 +173,45 @@ export class LogInComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        // stop here if form is invalid
-        if (this.loginForm.invalid) {
-            return;
-        }
-
         this.loading = true;
-        // this.authenticationService.login(this.f.username.value, this.f.password.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.router.navigate([this.returnUrl]);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
     }
 
-    tryLogin(username, password) {
-        this.submitted = true;
-        (async () => {
-            await this.delay(500);
-            for (let i = 0; i < this.userConfig.Users.length; i++) {
-                this.getUserInfo(this.userConfig.Users[i].uid);
-                await this.delay(200);
-                if (this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value) {
-                    this.found = true;
-                    this.data.login(username.value);
-                    console.log('works')
-                    break;
-                }
-                await this.delay(200);
+    tryLogin(username, password){
+      console.log("Username: ", username.value, "Password: ", password.value);
+      this.submitted = true;
+      this.loading = true;
+      (async () => {
+        await this.delay(500);
+        for(let i = 0; i < this.userConfig.Users.length; i++){
+          console.log(this.userConfig.Users[i]);
+            this.getUserInfo(this.userConfig.Users[i].uid);
+            await this.delay(200);
+            if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
+                this.found = true;
+                this.userService.setFound(true);
+                this.data.login(username.value);
+                    // Do something before delay
+                 
+                    
+                    this.userService.signIn(JSON.parse(JSON.stringify({ user_name: username.value, password: password.value })))
+                    .subscribe(chat => this.signed.push(chat))  
+              
+                    await this.delay(50);              
+              
+                console.log('works')
+                break;
             }
-            if (this.found) {
-                this.router.navigateByUrl('/dashboard');
-            }
+            await this.delay(200);
+        }
+        if(this.found){
+            this.router.navigateByUrl('/dashboard');
+            this.loading = false;
+          }else{
+            this.notFound = true;
+            this.loading = false;
+          }
 
-        })();
-
+      })();
     }
 
     // setState(name, value){

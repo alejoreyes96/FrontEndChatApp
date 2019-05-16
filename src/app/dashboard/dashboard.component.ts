@@ -63,6 +63,9 @@ export class DashboardComponent implements OnInit {
   messageStatConfig: StatsConfig  = {
     Stats: ["No messages to be Shown"]
   };
+  userStatConfig: StatsConfig  = {
+    Stats: ["No messages to be Shown"]
+  };
   userChatConfig: UserConfig = {
     Users: ["No Chats to be shown"]
   };
@@ -76,6 +79,7 @@ export class DashboardComponent implements OnInit {
   dislikeStats: any[] = new Array();
   replyStats: any[] = new Array();
   messageStats: any[] = new Array();
+  userStats: any[] = new Array();
 
   
   
@@ -255,22 +259,32 @@ getUsers() {
   })();
 
   } 
+  getUserStats(){
+    (async () => { 
+
+    this.stats.getUserStats()
+    .subscribe((data: StatsConfig) => this.userStatConfig = {
+      Stats: data['Stats']
+      
+    });
+    await this.delay(50);
+    for(var i =0; i<this.userStatConfig.Stats.length;i++){
+      
+    }
+    await this.delay(50);
+  })();
+
+  } 
  
 
   ngOnInit() {
-    setInterval(()=>{
-      this.hashStats = [];
-      this.likeStats = [];
-      this.dislikeStats = [];
-      this.messageStats = [];
-      this.replyStats = [];
+   
       this.getHashStats();
       this.getDislikeStats();
       this.getReplyStats();
       this.getLikeStats();
       this.getMessageStats();
-     }, 250);
-
+      this.getUserStats();
    
     
     // this.data.currentUser.subscribe(user => this.user = user)

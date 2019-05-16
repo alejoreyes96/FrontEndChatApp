@@ -1,3 +1,106 @@
-<p>
-  profile works!
-</p>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
+<div id="container">
+    <mat-card class="mainCard">
+        <h2>Information</h2>
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="first_name">First Name </label>
+                &nbsp;
+                <input placeholder={{pfirst}} type="text" #first_name class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(first_name)"><font color="yellow">WARNING:  First name is required</font></div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="last_name">Last Name </label>
+                &nbsp;
+                <input placeholder={{plast}} type="text" #last_name class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(last_name)"><font color="yellow">WARNING:  Last name is required</font></div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="birthdate">Birth Date (MM/DD/YYYY) </label>
+                &nbsp;
+                <input placeholder={{pbirth}} type="text" #birthdate class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!validBirthdate(birthdate)"><font color="red">INVALID:  Birth date is not valid</font></div>
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(birthdate)"><font color="yellow">WARNING:  Birth date is required</font></div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <div id="card" class="form-group">
+                <label for="phone_number">Phone Number (No Dashes)</label>
+                &nbsp;
+                <input placeholder={{pphone}} type="text" #phone_number class="form-control" />
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!validPhone(phone_number)"><font color="red">INVALID:  Phone number is not valid</font></div>
+            </div>
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="empty(phone_number)"><font color="yellow">WARNING:  Phone number is required</font></div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <label for="email">Email Address </label>
+            &nbsp;
+            <input placeholder={{pemail}} type="text" #email class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="!checkEmail(email)"><font color="red">INVALID:  Not a valid email address</font></div>
+            </div>
+        </div>
+        &nbsp;
+        <div id="card" class="form-group">
+            <label for="password">Password </label>
+            &nbsp;
+            <input placeholder={{temp_pass}} type="password" #password class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="password.value.length < 8"><font color="yellow">WARNING:  Password must contain at least 8 characters or symbols</font></div>
+            </div>
+        </div>
+        &nbsp;
+        &nbsp;
+        <div id="card" class="form-group">
+            <label for="password">Retype password </label>
+            &nbsp;
+            <input type="password" #password2 class="form-control" />
+            <div *ngIf="submitted" class="invalid-feedback">
+                <div *ngIf="password.value != password2.value"><font color="yellow">WARNING:  Passwords don't match</font></div>
+            </div>
+        </div>
+        &nbsp;
+        <div>
+
+        </div>
+        &nbsp;
+        &nbsp;
+        <div class="form-group">
+
+            <button mat-button [disabled]="loading" (click)="onSubmit(first_name, last_name, birthdate, phone_number, email, password)" class="btn">Modify </button>
+
+        </div>
+    </mat-card>
+
+    <mat-card class="pic">
+
+    </mat-card>
+</div>
+
+<!-- </form> -->

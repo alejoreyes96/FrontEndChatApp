@@ -7,13 +7,13 @@
     <div id="card" class="form-group">
       <label for="username">Username </label>
       &nbsp;
-      <input type="text" #username class="form-control" />
+      <input placeholder="username" type="text" #username class="form-control" />
     </div>
     &nbsp;
     <div id="card" class="form-group">
       <label for="password">Password </label>
       &nbsp;
-      <input #password type="password" class="form-control" />
+      <input placeholder="password" #password type="password" class="form-control" />
 
     </div>
     &nbsp;
@@ -27,7 +27,8 @@
       <div>
         <button mat-button [disabled]="loading" (click)="tryLogin(username, password)" class="btn">Login</button>
         &nbsp;
-        <div *ngIf="submitted && !found">Incorrect credentials.</div>
+        <div *ngIf="submitted && notFound">Incorrect credentials.</div>
+        <div *ngIf="loading">Verifying...</div>
         <button mat-button routerLink="/register" class="btn">Register</button>
       </div>
     </div>

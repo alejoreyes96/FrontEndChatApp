@@ -8,10 +8,10 @@
             <div id="card" class="form-group">
                 <label for="first_name">First Name </label>
                 &nbsp;
-                <input type="text" #first_name class="form-control" />
+                <input placeholder="{{pfirst}}" type="text" #first_name class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(first_name)"><font color="yellow">WARNING:  First name is required</font></div>
+                <div *ngIf="empty(first_name)"><font color="orange">WARNING:  First name is required</font></div>
             </div>
         </div>
         &nbsp;
@@ -20,10 +20,10 @@
             <div id="card" class="form-group">
                 <label for="last_name">Last Name </label>
                 &nbsp;
-                <input type="text" #last_name class="form-control" />
+                <input placeholder="{{plast}}" type="text" #last_name class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(last_name)"><font color="yellow">WARNING:  Last name is required</font></div>
+                <div *ngIf="empty(last_name)"><font color="orange">WARNING:  Last name is required</font></div>
             </div>
         </div>
         &nbsp;
@@ -32,13 +32,13 @@
             <div id="card" class="form-group">
                 <label for="birthdate">Birth Date (MM/DD/YYYY) </label>
                 &nbsp;
-                <input type="text" #birthdate class="form-control" />
+                <input placeholder="{{pbirth}}" type="text" #birthdate class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
                 <div *ngIf="!validBirthdate(birthdate)"><font color="red">INVALID:  Birth date is not valid</font></div>
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(birthdate)"><font color="yellow">WARNING:  Birth date is required</font></div>
+                <div *ngIf="empty(birthdate)"><font color="orange">WARNING:  Birth date is required</font></div>
             </div>
         </div>
         &nbsp;
@@ -47,13 +47,13 @@
             <div id="card" class="form-group">
                 <label for="phone_number">Phone Number (No Dashes)</label>
                 &nbsp;
-                <input type="text" #phone_number class="form-control" />
+                <input placeholder="{{pphone}}" type="text" #phone_number class="form-control" />
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
                 <div *ngIf="!validPhone(phone_number)"><font color="red">INVALID:  Phone number is not valid</font></div>
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="empty(phone_number)"><font color="yellow">WARNING:  Phone number is required</font></div>
+                <div *ngIf="empty(phone_number)"><font color="orange">WARNING:  Phone number is required</font></div>
             </div>
         </div>
         &nbsp;
@@ -61,12 +61,12 @@
         <div id="card" class="form-group">
             <label for="username">Username </label>
             &nbsp;
-            <input type="text" #username class="form-control" />
+            <input placeholder="{{pusername}}" type="text" #username class="form-control" />
             <div *ngIf="submitted" class="invalid-feedback">
                 <div *ngIf="!checkUsername(username)"><font color="red">INVALID:  Username not valid or unavailable</font></div>
             </div>
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="username.value.length < 4"><font color="yellow">WARNING:  Username required or too short</font></div>
+                <div *ngIf="username.value.length < 4"><font color="orange">WARNING:  Username required or too short</font></div>
             </div>
         </div>
         &nbsp;
@@ -74,7 +74,7 @@
         <div id="card" class="form-group">
             <label for="email">Email Address </label>
             &nbsp;
-            <input type="text" #email class="form-control" />
+            <input placeholder="{{pemail}}" type="text" #email class="form-control" />
             <div *ngIf="submitted" class="invalid-feedback">
                 <div *ngIf="!checkEmail(email)"><font color="red">INVALID:  Not a valid email address</font></div>
             </div>
@@ -83,9 +83,9 @@
         <div id="card" class="form-group">
             <label for="password">Password </label>
             &nbsp;
-            <input type="password" #password class="form-control" />
+            <input placeholder="{{ppassword}}" type="password" #password class="form-control" />
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="password.value.length < 8"><font color="yellow">WARNING:  Password must contain at least 8 characters or symbols</font></div>
+                <div *ngIf="password.value.length < 8"><font color="orange">WARNING:  Password must contain at least 8 characters or symbols</font></div>
             </div>
         </div>
         &nbsp;
@@ -93,9 +93,9 @@
         <div id="card" class="form-group">
             <label for="password">Retype password </label>
             &nbsp;
-            <input type="password" #password2 class="form-control" />
+            <input placeholder="{{ppassword2}}" type="password" #password2 class="form-control" />
             <div *ngIf="submitted" class="invalid-feedback">
-                <div *ngIf="password.value != password2.value"><font color="yellow">WARNING:  Passwords don't match</font></div>
+                <div *ngIf="password.value != password2.value"><font color="orange">WARNING:  Passwords don't match</font></div>
             </div>
         </div>
         &nbsp;

@@ -22,6 +22,15 @@ export class RegisterComponent implements OnInit {
     registerForm: FormGroup;
     loading = false;
     submitted = false;
+    pfirst = "First name";
+    plast = "Last name";
+    pbirth = "Birth date";
+    pphone = "Phone number";
+    pusername = "Username";
+    pemail = "Email address";
+    ppassword = "Password";
+    ppassword2 = "Retype password";
+
     addedUser: any[] = [{
    
     }]
@@ -105,8 +114,8 @@ export class RegisterComponent implements OnInit {
       let year1 = birthdate.value[7];
       let year2 = birthdate.value[8];
       let year3 = birthdate.value[9];
-      let month = Number(month0)*10 + Number(month1);
-      let day = Number(day0)*10 + Number(day1);
+      let month = Number(month0) + Number(month1);
+      let day = Number(day0) + Number(day1);
       let year = Number(year0)*1000 + Number(year1)*100 + Number(year2)*10 + Number(year3);
       let dayValid = false;
       let monthValid = false;
@@ -136,7 +145,7 @@ export class RegisterComponent implements OnInit {
             }
           }else if(month <= 7){
             valid = true;
-          }else if(month >= 8 && month%2 == 1){
+          }else if(month >= 8 ){
             if(day <= 30){
               valid = true;
             }
@@ -196,7 +205,7 @@ export class RegisterComponent implements OnInit {
         this.userService.addUser(JSON.parse(JSON.stringify({ first_name: first_name.value, last_name: last_name.value, birth_date: birthdate.value, 
           phone: phone_number.value, username: username.value, email: email.value, password: password.value})))
           .subscribe(user => this.addedUser.push(user))
-        await this.delay(250);
+        await this.delay(500);
         this.getUsers();
   
       })();
@@ -208,24 +217,7 @@ export class RegisterComponent implements OnInit {
         if(!this.empty(first_name) && !this.empty(last_name) && this.validBirthdate(birthdate) && !this.empty(birthdate) && this.validPhone(phone_number)
         && !this.empty(phone_number) && this.checkUsername(username) && username.value.length >= 4 && this.checkEmail(email) && password.value.length >= 8){
           this.addUser(first_name, last_name, birthdate, phone_number, username, email, password);
-          this.router.navigateByUrl('/dashboard');
+          this.router.navigateByUrl('/log-in');
         }
-        // stop here if form is invalid
-        // if (this.registerForm.invalid) {
-        //     return;
-        // }
-
-        // this.loading = true;
-        // this.userService.register(this.registerForm.value)
-        //     .pipe(first())
-        //     .subscribe(
-        //         data => {
-        //             this.alertService.success('Registration successful', true);
-        //             this.router.navigate(['/login']);
-        //         },
-        //         error => {
-        //             this.alertService.error(error);
-        //             this.loading = false;
-        //         });
     }
 }
