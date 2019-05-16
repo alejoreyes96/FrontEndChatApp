@@ -151,6 +151,7 @@ getUsers() {
 
   })();
   }
+
   
   showModal(): void {
     $("#myModal").modal('show');
@@ -163,6 +164,15 @@ getUsers() {
     document.getElementById('close-modal').click();
   }
 
+  
+  refresh(): void {
+    window.location.reload();
+}
+  getGid(gid){
+    this.data.changeGid(gid);
+  }
+  constructor(private stats: StatisticsService, private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
+  }
   getHashStats(){
     (async () => { 
 
@@ -211,13 +221,7 @@ getUsers() {
   })();
 
   } 
-  htmlDelay(){
-    (async () => {
-      await this.delay(1000);
 
-  })();
-
-  }
   getLikeStats(){
     (async () => { 
 
@@ -247,28 +251,34 @@ getUsers() {
       
         this.messageStats.push([this.messageStatConfig.Stats[i].Date, this.messageStatConfig.Stats[i].Amount_Per_Day]);
     }
+    await this.delay(50);
   })();
 
   } 
-  
-  refresh(): void {
-    window.location.reload();
-}
-  getGid(gid){
-    this.data.changeGid(gid);
-  }
-  constructor(private stats: StatisticsService, private data: DataService, private breakpointObserver: BreakpointObserver, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) {
-  }
+ 
 
   ngOnInit() {
+    setInterval(()=>{
+      this.hashStats = [];
+      this.likeStats = [];
+      this.dislikeStats = [];
+      this.messageStats = [];
+      this.replyStats = [];
+      this.getHashStats();
+      this.getDislikeStats();
+      this.getReplyStats();
+      this.getLikeStats();
+      this.getMessageStats();
+     }, 250);
+
    
-    this.data.currentUser.subscribe(user => this.user = user)
+    
+    // this.data.currentUser.subscribe(user => this.user = user)
+    
     this.getUsers();
-    this.getHashStats();
-    this.getDislikeStats();
-    this.getReplyStats();
-    this.getLikeStats();
-    this.getMessageStats();
+    this.user = sessionStorage.getItem("user");
+
+   
     this.showChats();
     this.data.currentMessage.subscribe(message => this.gid = message)
 

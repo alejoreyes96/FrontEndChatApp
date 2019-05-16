@@ -4,6 +4,8 @@ import { MessagesService } from '../services/messages.service';
 import { UsersService } from '../services/users.service';
 import { DataService } from '../services/data.service';
 import { Observable, Observer } from 'rxjs';
+import { StatisticsService } from '../services/statistics.service';
+
 export interface Config {
   GroupChats: any[]
 
@@ -23,6 +25,9 @@ export interface OwnerConfig {
   Owner: any[]
 
 }
+export interface StatsConfig {
+  Stats: any[]
+}
 declare var $: any;
 
 @Component({
@@ -33,7 +38,7 @@ declare var $: any;
 
 export class GroupChatComponent implements OnInit {
 
-  constructor(private data: DataService, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
+  constructor(private stats: StatisticsService, private data: DataService, private service: GroupChatService, private messageService: MessagesService, private userService: UsersService) { }
   gid: number;
   gindex: number;
   number: number;
@@ -52,6 +57,21 @@ export class GroupChatComponent implements OnInit {
   usersInChatConfig: UserConfig = {
     Users: ["No Users to be Shown"]
   }
+  hashConfig: StatsConfig  = {
+    Stats: ["No Hashtags to be Shown"]
+  };
+  likeConfig: StatsConfig  = {
+    Stats: ["No likes to be Shown"]
+  };
+  dislikeConfig: StatsConfig  = {
+    Stats: ["No dislikes to be Shown"]
+  };
+  replyConfig: StatsConfig  = {
+    Stats: ["No replies to be Shown"]
+  };
+  messageStatConfig: StatsConfig  = {
+    Stats: ["No messages to be Shown"]
+  };
   userC: User = {
     User: ""
   }
@@ -67,12 +87,17 @@ export class GroupChatComponent implements OnInit {
 
   }]
   user: string;
-
+  hashStats: any[] = new Array();
+  likeStats: any[] = new Array();
+  dislikeStats: any[] = new Array();
+  replyStats: any[] = new Array();
+  messageStats: any[] = new Array();
   ngOnInit() {
-
    
-
-    this.data.currentUser.subscribe(user => this.user = user)
+ 
+  
+    // this.data.currentUser.subscribe(user => this.user = user)
+    this.user = sessionStorage.getItem("user");
     this.getUsers();
     this.getGroupChats();
     this.data.currentMessage.subscribe(message => this.gid = message)
@@ -93,6 +118,7 @@ export class GroupChatComponent implements OnInit {
   hideModal(): void {
     document.getElementById('close-modal').click();
   }
+  
 
   messages: any[] = [{
     text: "Welcome to the chat !!",
@@ -222,6 +248,7 @@ export class GroupChatComponent implements OnInit {
     })();
 
   }
+ 
   loadMessage(event: any, event2: any) {
     for(var i=0;i<this.userConfig.Users.length;i++){
       if(this.user == this.userConfig.Users[i].uname){

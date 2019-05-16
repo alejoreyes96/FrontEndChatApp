@@ -5,7 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {NbChatModule} from '../../@nebular/theme';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NbThemeModule, NbLayoutModule } from '../../@nebular/theme';
+import { NbThemeModule, NbLayoutModule, NbCardModule } from '../../@nebular/theme';
 import { LogInComponent } from './log-in/log-in.component';
 import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -38,6 +38,7 @@ import { GoogleChartsModule } from 'angular-google-charts';
     AppRoutingModule, 
     NbChatModule, BrowserAnimationsModule, NbThemeModule.forRoot({ name: 'corporate' }), 
     NbLayoutModule, 
+    NbCardModule,
     MatGridListModule, 
     MatCardModule, 
     MatMenuModule, 

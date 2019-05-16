@@ -7,12 +7,15 @@
 </head> 
 
 <body>
-  <div id="container">
+  
+  <div id="container" style="position: relative">
     <nb-chat class="title" title="{{this.config.GroupChats[gindex].gname}}" size="large">
       <nb-chat-message *ngFor="let msg of messages" [type]="msg.type" [message]="msg.text" [reply]="msg.reply" [sender]="msg.user.name"
         [date]="msg.date" [files]="msg.files" [quote]="msg.quote" [latitude]="msg.latitude" [longitude]="msg.longitude"
         [avatar]="msg.user.avatar">
-
+        <nb-card>
+          WHY
+        </nb-card>
       </nb-chat-message> 
 
 

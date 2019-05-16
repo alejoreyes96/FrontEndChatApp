@@ -2,28 +2,33 @@ import { Component, OnInit, NgModule, ViewChild, ElementRef } from '@angular/cor
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, Validators, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { first } from 'rxjs/operators';
-import { UsersService} from '../services/users.service';
+import { UsersService } from '../services/users.service';
 import { DataService } from '../services/data.service'
+import { StatisticsService } from '../services/statistics.service';
+
 // import { truncate } from 'fs';
 
 // import { AlertService, AuthenticationService } from '../_services';
 
 export interface UserConfig {
     Users: any[]
-  }
-  export interface UserConfig2 {
+}
+export interface UserConfig2 {
     Users: any
-  }
+}
+export interface StatsConfig {
+    Stats: any[]
+}
 
 @Component({
     selector: 'app-log-in',
-  styleUrls: ['./log-in.component.css'],
+    styleUrls: ['./log-in.component.css'],
     templateUrl: 'log-in.component.html'
 })
 
 export class LogInComponent implements OnInit {
-    @ViewChild('username', {read: ElementRef}) username: ElementRef<HTMLElement>;
-    @ViewChild('password', {read: ElementRef}) password: ElementRef<HTMLElement>;
+    @ViewChild('username', { read: ElementRef }) username: ElementRef<HTMLElement>;
+    @ViewChild('password', { read: ElementRef }) password: ElementRef<HTMLElement>;
     validUsername: boolean;
     validPassword: boolean;
     loginForm: FormGroup;
@@ -34,13 +39,28 @@ export class LogInComponent implements OnInit {
     found: boolean = false;
     user: string;
     currentUser: string = "";
-
+    hashConfig: StatsConfig = {
+        Stats: ["No Hashtags to be Shown"]
+    };
+    likeConfig: StatsConfig = {
+        Stats: ["No likes to be Shown"]
+    };
+    dislikeConfig: StatsConfig = {
+        Stats: ["No dislikes to be Shown"]
+    };
+    replyConfig: StatsConfig = {
+        Stats: ["No replies to be Shown"]
+    };
+    messageStatConfig: StatsConfig = {
+        Stats: ["No messages to be Shown"]
+    };
     constructor(
         // private formBuilder: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
         private userService: UsersService,
-        private data: DataService
+        private data: DataService,
+        private stats: StatisticsService
         // private authenticationService: AuthenticationService,
         // private alertService: AlertService
     ) {
@@ -57,20 +77,25 @@ export class LogInComponent implements OnInit {
         // this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    setCurrentUser(user){
-      this.currentUser = user;
+    setCurrentUser(user) {
+        this.currentUser = user;
     }
 
     userConfig: UserConfig = {
         Users: ["No Users to be Shown"]
-      }
+    }
 
-      userConfig2: UserConfig2 = {
+    userConfig2: UserConfig2 = {
         Users: ["No Users to be Shown"]
-      }  
-
+    }
+    hashStats: any[] = new Array();
+    likeStats: any[] = new Array();
+    dislikeStats: any[] = new Array();
+    replyStats: any[] = new Array();
+    messageStats: any[] = new Array();
+    interval: any;
     ngOnInit() {
-        this.data.currentUser.subscribe(user => this.user = user)
+
         this.loginForm = new FormGroup({
             username: new FormControl('', Validators.required),
             password: new FormControl('', Validators.required)
@@ -81,38 +106,40 @@ export class LogInComponent implements OnInit {
         this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     }
 
+
+
     delay(ms: number) {
         return new Promise(resolve => setTimeout(resolve, ms));
-      }
-      getUsers() {
+    }
+    getUsers() {
         (async () => {
-        // Do something before delay
+            // Do something before delay
 
-    
-        this.userService.getUsers()
-          .subscribe((data: UserConfig) => this.userConfig = {
-    
-            Users: data['Users']
-          });
-          await this.delay(1000);
+
+            this.userService.getUsers()
+                .subscribe((data: UserConfig) => this.userConfig = {
+
+                    Users: data['Users']
+                });
+            await this.delay(1000);
 
         })();
-      }
-      getUserInfo(id) {
+    }
+    getUserInfo(id) {
         (async () => {
-        // Do something before delay
-    
-        this.userService.getUserInfo(id)
-          .subscribe((data: UserConfig2) => this.userConfig2 = {
-            Users: data['Users']
-          });
+            // Do something before delay
+
+            this.userService.getUserInfo(id)
+                .subscribe((data: UserConfig2) => this.userConfig2 = {
+                    Users: data['Users']
+                });
         })();
-      }
+    }
 
     // convenience getter for easy access to form fields
     get f() { return this.loginForm.controls; }
-    checkValid(username, password){
-        
+    checkValid(username, password) {
+
         // if(this.loginForm['username'] == undefined || this.loginForm['username'].length == 0){
         //     this.validUsername = false;
         // }else{
@@ -124,15 +151,15 @@ export class LogInComponent implements OnInit {
         // }else{
         //     this.validUsername = true;
         // }
-        if(this.username == undefined || this.username == null || this.username.nativeElement.nodeValue.length == 0){
+        if (this.username == undefined || this.username == null || this.username.nativeElement.nodeValue.length == 0) {
             this.validUsername = false;
-        }else{
+        } else {
             this.validUsername = true;
         }
 
-        if(this.password == undefined || this.password == null || this.password.nativeElement.nodeValue.length < 6){
+        if (this.password == undefined || this.password == null || this.password.nativeElement.nodeValue.length < 6) {
             this.validPassword = false;
-        }else{
+        } else {
             this.validPassword = true;
         }
         console.log("works")
@@ -162,42 +189,42 @@ export class LogInComponent implements OnInit {
         //         });
     }
 
-    tryLogin(username, password){
-      this.submitted = true;
-      (async () => {
-        await this.delay(500);
-        for(let i = 0; i < this.userConfig.Users.length; i++){
-            this.getUserInfo(this.userConfig.Users[i].uid);
-            await this.delay(200);
-            if(this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value){
-                this.found = true;
-                this.data.login(username.value);
-                console.log('works')
-                break;
+    tryLogin(username, password) {
+        this.submitted = true;
+        (async () => {
+            await this.delay(500);
+            for (let i = 0; i < this.userConfig.Users.length; i++) {
+                this.getUserInfo(this.userConfig.Users[i].uid);
+                await this.delay(200);
+                if (this.userConfig.Users[i].uname === username.value && this.userConfig2.Users.hupassword === password.value) {
+                    this.found = true;
+                    this.data.login(username.value);
+                    console.log('works')
+                    break;
+                }
+                await this.delay(200);
             }
-            await this.delay(200);
-        }
-        if(this.found){
-            this.router.navigateByUrl('/dashboard');
-          }
+            if (this.found) {
+                this.router.navigateByUrl('/dashboard');
+            }
 
-      })();
-      
+        })();
+
     }
 
     // setState(name, value){
     //     [name]:value;
     // }
 
-    handleChange(e){
-    let target = e.target;
-    let value = target.type === 'checkbox' ? target.checked : target.value;
-    let name = target.name;
+    handleChange(e) {
+        let target = e.target;
+        let value = target.type === 'checkbox' ? target.checked : target.value;
+        let name = target.name;
 
-    // this.setState({
-    //     [name]:value
-    // });
-}
+        // this.setState({
+        //     [name]:value
+        // });
+    }
 
     // handleSubmit(e){
     // e.preventDefault();
@@ -207,13 +234,13 @@ export class LogInComponent implements OnInit {
     // }
     // console.log('The form was submitted with the following data:');
     // console.log(this.state);
-// }
+    // }
 
-validateEmail(inputText){
-    var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-    if(inputText.match(mailformat)){
-        //document.form1.text1.focus();
-        return true;
+    validateEmail(inputText) {
+        var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        if (inputText.match(mailformat)) {
+            //document.form1.text1.focus();
+            return true;
         } else {
             alert("You have entered an invalid email address!");
             //document.form1.text1.focus();

@@ -1,5 +1,8 @@
 <nb-layout>
   <nb-layout-header fixed>
+    <div>
+      User: {{user}}
+    </div>
     <div id="header">
       FFMA - Fast Friends Media App!
       <div class="menuDiv">
@@ -12,7 +15,7 @@
     <mat-menu #menu="matMenu">
       <button mat-menu-item class="items" routerLink="/dashboard" routerLinkActive="active">Dashboard</button>
       <button mat-menu-item class="items" routerLink="/group-chat" routerLinkActive="active">GroupChats</button>
-      <button mat-menu-item class="items" routerLink="/log-in" routerLinkActive="active">SignOut</button>
+      <button mat-menu-item class="items" (click)="logout()" routerLink="/log-in" routerLinkActive="active">SignOut</button>
 
     </mat-menu>
 
