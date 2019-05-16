@@ -38,61 +38,29 @@ const httpOptions = {
 export class GroupChatService {
   constructor(private http: HttpClient) {
   }
-
-<<<<<<< HEAD
-
-
-  chatUrl: string;
-
-  getAllChats() {
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/groupChats/';
-    return this.http.get<GroupChatsConfig>(this.chatUrl);
-  }
-  addUserToChat(userid1, groupchatid, userConfig: UserConfig): Observable<UserConfig> {
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/' + userid1 + '/groupChats/' + groupchatid + '/users/';
-    console.log(this.chatUrl);
-    return this.http.post<UserConfig>(this.chatUrl, userConfig, httpOptions);
-
-  }
-  addMessage(userid1, groupchatid, userConfig: MessageConfig): Observable<MessageConfig> {
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/' + userid1 + '/groupChats/' + groupchatid + '/messages/';
-    console.log(this.chatUrl);
-    return this.http.post<MessageConfig>(this.chatUrl, userConfig, httpOptions);
-
-  }
-
-  createGroupChat(userid1, userConfig: GroupChatConfig): Observable<GroupChatConfig> {
-    this.chatUrl = 'http://127.0.0.1:5000/FFMA/users/' + userid1 + '/groupChats/';
-    console.log(this.chatUrl);
-    return this.http.post<GroupChatConfig>(this.chatUrl, userConfig, httpOptions);
-
-  }
-
-
-
-=======
+    localUrl: string = "127.0.0.1:5000";
     ngrokUrl: string = "1c98dd52.ngrok.io";
     chatUrl: string;
     
     getAllChats(){
-      this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/groupChats/';
+      this.chatUrl = 'http://'+this.localUrl+'/FFMA/groupChats/';
       return this.http.get<GroupChatsConfig>(this.chatUrl);
     }
     addUserToChat (userid1, groupchatid, userConfig: UserConfig): Observable<UserConfig>{
-      this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/users/';
+      this.chatUrl = 'http://'+this.localUrl+'/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/users/';
       console.log(this.chatUrl);
       return this.http.post<UserConfig>(this.chatUrl, userConfig, httpOptions);
   
     }
     addMessage (userid1, groupchatid, userConfig: MessageConfig): Observable<MessageConfig>{
-      this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/messages/';
+      this.chatUrl = 'http://'+this.localUrl+'/FFMA/users/'+userid1+'/groupChats/'+groupchatid+'/messages/';
       console.log(this.chatUrl);
       return this.http.post<MessageConfig>(this.chatUrl, userConfig, httpOptions);
   
     }
 
     createGroupChat (userid1, userConfig: GroupChatConfig): Observable<GroupChatConfig>{
-      this.chatUrl = 'http://'+this.ngrokUrl+'/FFMA/users/'+userid1+'/groupChats/';
+      this.chatUrl = 'http://'+this.localUrl+'/FFMA/users/'+userid1+'/groupChats/';
       console.log(this.chatUrl);
       return this.http.post<GroupChatConfig>(this.chatUrl, userConfig, httpOptions);
   
@@ -100,5 +68,4 @@ export class GroupChatService {
     
  
     
->>>>>>> 42b5480993c5219cc7c6ceee3798ef1161cfd68b
 }
